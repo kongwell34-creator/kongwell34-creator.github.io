@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="zh-HK" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jardine Living | Premium Hong Kong Island Residential Rentals</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;700&family=Noto+Serif+SC:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FDF8EC',
+                            200: '#F4E8C1',
+                            300: '#E7D191',
+                            400: '#D9B963',
+                            500: '#C5A059',
+                            600: '#A8823F',
+                            700: '#86652B',
+                        },
+                        navy: {
+                            800: '#0F172A',
+                            900: '#0B132B',
+                            950: '#050A18',
+                        },
+                        pearl: '#F8F9FA',
+                        charcoal: '#1E293B',
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif TC"', '"Noto Serif SC"', '"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', 'Noto Serif TC', 'Noto Serif SC', sans-serif;
+            background-color: #F8F9FA;
+            color: #1E293B;
+        }
+        .font-serif-title {
+            font-family: 'Noto Serif TC', 'Noto Serif SC', 'Playfair Display', serif;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B132B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C5A059;
+            border-radius: 4px;
+        }
+        .glass-nav {
+            background: rgba(11, 19, 43, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-pearl text-charcoal antialiased selection:bg-gold-500 selection:text-white">
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- 1. HEADER & NAVBAR -->
+    <header class="fixed top-0 left-0 w-full z-40 transition-all duration-300 glass-nav border-b border-gold-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 border border-gold-500 flex items-center justify-center transform rotate-45 group-hover:rotate-0 transition-transform duration-500 bg-navy-900/60">
+                    <span class="text-gold-500 font-serif font-bold text-xl -rotate-45 group-hover:rotate-0 transition-transform duration-500">J</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl tracking-widest font-serif font-semibold text-white uppercase">Jardine Living</span>
+                    <span class="text-[9px] tracking-[0.22em] text-gold-400 font-light uppercase" data-i18n="tagline">Premium HK Rentals</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-xs lg:text-sm font-medium tracking-wider">
+                <a href="#hero" class="text-white hover:text-gold-400 transition-colors py-2" data-i18n="nav_home">首頁</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-gold-400 transition-colors py-2" data-i18n="nav_portfolio">精選市區租務</a>
+                <a href="#estimator" class="text-gray-300 hover:text-gold-400 transition-colors py-2" data-i18n="nav_estimator">首期開支試算</a>
+                <a href="#locations" class="text-gray-300 hover:text-gold-400 transition-colors py-2" data-i18n="nav_locations">地段覆蓋</a>
+                <a href="#contact" class="text-gray-300 hover:text-gold-400 transition-colors py-2" data-i18n="nav_contact">聯絡我們</a>
+            </nav>
+
+            <!-- Language Switcher & Actions -->
+            <div class="flex items-center space-x-3 lg:space-x-4">
+                
+                <!-- Language Switcher -->
+                <div class="bg-navy-950/80 border border-gold-500/30 rounded p-1 flex items-center text-[11px]">
+                    <button onclick="setLanguage('zh-HK')" id="lang-zh-HK" class="px-2 py-0.5 rounded text-gold-400 font-medium transition-all">繁</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="setLanguage('zh-CN')" id="lang-zh-CN" class="px-2 py-0.5 rounded text-gray-400 hover:text-white transition-all">简</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="setLanguage('en')" id="lang-en" class="px-2 py-0.5 rounded text-gray-400 hover:text-white transition-all">EN</button>
+                </div>
+
+                <!-- Phone Direct Link -->
+                <a href="tel:25811262" class="hidden xl:flex items-center gap-1.5 text-xs text-gold-400 hover:text-gold-300 font-medium">
+                    <i class="fa-solid fa-phone text-xs"></i>
+                    <span>+852 2581 1262</span>
+                </a>
+
+                <!-- Wishlist Trigger -->
+                <button id="open-wishlist-btn" onclick="toggleWishlistDrawer()" class="relative p-2 text-gray-300 hover:text-gold-400 transition-colors focus:outline-none" title="Wishlist">
+                    <i class="fa-regular fa-bookmark text-lg"></i>
+                    <span id="wishlist-badge" class="absolute -top-1 -right-1 bg-gold-500 text-navy-950 text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center scale-0 transition-transform duration-300">0</span>
+                </button>
+
+                <!-- Booking Button -->
+                <button onclick="openBookingModal()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-navy-950 font-semibold text-xs uppercase tracking-widest transition-all shadow-md hover:shadow-gold-500/20 rounded-sm">
+                    <i class="fa-regular fa-calendar-check text-xs"></i>
+                    <span data-i18n="btn_schedule">預約現場看房</span>
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden text-white p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Drawer -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy-900/98 border-b border-gold-500/20 px-6 py-6 space-y-4">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block text-white hover:text-gold-400 py-1 font-medium" data-i18n="nav_home">首頁</a>
+            <a href="#portfolio" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 py-1 font-medium" data-i18n="nav_portfolio">精選市區租務</a>
+            <a href="#estimator" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 py-1 font-medium" data-i18n="nav_estimator">首期開支試算</a>
+            <a href="#locations" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 py-1 font-medium" data-i18n="nav_locations">地段覆蓋</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-gray-300 hover:text-gold-400 py-1 font-medium" data-i18n="nav_contact">聯絡我們</a>
+            <div class="pt-4 border-t border-white/10 space-y-3">
+                <a href="tel:25811262" class="flex items-center justify-center gap-2 text-gold-400 text-xs font-semibold py-2">
+                    <i class="fa-solid fa-phone"></i> +852 2581 1262
+                </a>
+                <button onclick="toggleMobileMenu(); openBookingModal();" class="w-full text-center py-3 bg-gold-500 text-navy-950 font-semibold text-xs tracking-wider uppercase rounded-sm" data-i18n="btn_schedule">
+                    預約睇樓服務
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. HERO SECTION -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-navy-950">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2000&auto=format&fit=crop" 
+                 alt="Jardine Living Rental Property Showcase" 
+                 class="w-full h-full object-cover object-center opacity-35 scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/60 to-navy-950/30"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center text-white pt-12 pb-24">
+            <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs tracking-widest uppercase mb-6 backdrop-blur-sm">
+                <span class="w-1.5 h-1.5 rounded-full bg-gold-400 animate-ping"></span>
+                <span data-i18n="hero_pill">市區 6 大熱門地區 · 月租 HK$ 15,000 - 25,000</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif-title font-light tracking-wide leading-tight mb-6">
+                <span class="italic font-normal text-gold-400">Jardine Living</span><br>
+                <span class="text-2xl sm:text-4xl font-extralight block mt-2 text-gray-200" data-i18n="hero_subtitle">優質市區生活 · 理想租賃之選</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-gray-300 font-light text-base sm:text-lg mb-10 leading-relaxed" data-i18n="hero_desc">
+                涵蓋上環、中環、灣仔、西營盤、西灣河及筲箕灣。精選 10 套月租 HK$ 15,000 至 $25,000 之高品質開放式至 2 房精裝公寓。
+            </p>
+
+            <!-- Search / Filter Bar -->
+            <div class="max-w-4xl mx-auto bg-navy-900/85 backdrop-blur-md p-4 sm:p-5 rounded-lg border border-gold-500/30 shadow-2xl">
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+                    <!-- Location Filter -->
+                    <div>
+                        <label class="block text-[10px] text-gold-400 font-semibold uppercase tracking-wider text-left mb-1 px-1" data-i18n="label_district">地區 District</label>
+                        <select id="hero-region" onchange="applyFilters()" class="w-full bg-navy-950/90 text-white text-xs rounded border border-white/10 px-3 py-2.5 focus:outline-none focus:border-gold-500 cursor-pointer">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+
+                    <!-- Bedrooms Filter -->
+                    <div>
+                        <label class="block text-[10px] text-gold-400 font-semibold uppercase tracking-wider text-left mb-1 px-1" data-i18n="label_layout">戶型 Layout</label>
+                        <select id="hero-beds" onchange="applyFilters()" class="w-full bg-navy-950/90 text-white text-xs rounded border border-white/10 px-3 py-2.5 focus:outline-none focus:border-gold-500 cursor-pointer">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+
+                    <!-- Rent Range Slider Input -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1 px-1">
+                            <label class="text-[10px] text-gold-400 font-semibold uppercase tracking-wider" data-i18n="label_maxrent">最高月租 Max Rent</label>
+                            <span id="rent-value-display" class="text-xs font-mono text-gold-300">HK$ 25,000</span>
+                        </div>
+                        <input type="range" id="hero-rent-range" min="15000" max="25000" step="1000" value="25000" oninput="updateRentSliderDisplay(this.value)" class="w-full accent-gold-500 cursor-pointer mt-2">
+                    </div>
+
+                    <!-- CTA Button -->
+                    <div class="flex items-end">
+                        <button onclick="scrollToPortfolio()" class="w-full bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold py-2.5 px-4 rounded transition-colors flex items-center justify-center gap-2 text-xs tracking-wider uppercase">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span data-i18n="btn_search">搜尋 10 大租賃項目</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gold-400/70 text-xs tracking-widest uppercase animate-bounce">
+            <span data-i18n="scroll_explore">Scroll to Explore Rentals</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- 3. RENTAL STATS -->
+    <section class="bg-navy-900 border-y border-gold-500/20 py-8 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="border-r border-white/10 last:border-0">
+                <p class="font-serif-title text-2xl sm:text-3xl text-gold-400 font-bold mb-1" data-i18n="stat_1_val">6 大地區</p>
+                <p class="text-[11px] text-gray-300 tracking-widest uppercase" data-i18n="stat_1_lbl">市區極致便捷地段</p>
+            </div>
+            <div class="border-r border-white/10 last:border-0">
+                <p class="font-serif-title text-2xl sm:text-3xl text-gold-400 font-bold mb-1" data-i18n="stat_2_val">HK$ 15K - 25K</p>
+                <p class="text-[11px] text-gray-300 tracking-widest uppercase" data-i18n="stat_2_lbl">實惠高質租金區間</p>
+            </div>
+            <div class="border-r border-white/10 last:border-0">
+                <p class="font-serif-title text-2xl sm:text-3xl text-gold-400 font-bold mb-1" data-i18n="stat_3_val">100% 免管理費</p>
+                <p class="text-[11px] text-gray-300 tracking-widest uppercase" data-i18n="stat_3_lbl">全線包含管理費及差餉</p>
+            </div>
+            <div>
+                <p class="font-serif-title text-2xl sm:text-3xl text-gold-400 font-bold mb-1" data-i18n="stat_4_val">1 - 2 年</p>
+                <p class="text-[11px] text-gray-300 tracking-widest uppercase" data-i18n="stat_4_lbl">彈性靈活租約條款</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. RENTAL PROPERTY PORTFOLIO SECTION -->
+    <section id="portfolio" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-gold-600 font-semibold text-xs tracking-[0.3em] uppercase block mb-2" data-i18n="portfolio_pill">Hong Kong Island Selection</span>
+            <h2 class="text-3xl sm:text-4xl font-serif-title font-light text-navy-950 mb-4" data-i18n="portfolio_title">
+                Jardine Living 10 大市區精選住宅
+            </h2>
+            <div class="w-16 h-0.5 bg-gold-500 mx-auto mb-6"></div>
+            <p class="text-gray-600 text-sm font-light" data-i18n="portfolio_desc">
+                所有單位均位於港鐵沿線或核心社區，配備優質裝修與家電，月租全涵蓋 HK$ 15,000 至 $25,000。
+            </p>
+        </div>
+
+        <!-- Filter Category Tabs (Districts) -->
+        <div id="district-tabs" class="flex flex-wrap items-center justify-center gap-2 mb-10">
+            <!-- Populated dynamically -->
+        </div>
+
+        <!-- Properties Grid Container -->
+        <div id="properties-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Rendered dynamically -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="no-results" class="hidden text-center py-16">
+            <i class="fa-solid fa-house-circle-xmark text-4xl text-gray-300 mb-3"></i>
+            <p class="text-gray-500 font-medium" data-i18n="no_results">沒有符合您篩選條件的租賃物業</p>
+            <button onclick="resetFilters()" class="mt-4 text-xs font-semibold text-gold-600 underline" data-i18n="btn_reset_filters">重置所有篩選條件</button>
+        </div>
+    </section>
+
+    <!-- 5. RENTAL EXPENSE ESTIMATOR / LEASE CALCULATOR -->
+    <section id="estimator" class="py-20 bg-pearl border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white border border-gold-500/30 rounded-xl p-6 sm:p-10 shadow-xl">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    
+                    <!-- Left Info -->
+                    <div class="lg:col-span-5">
+                        <span class="text-gold-600 font-semibold text-xs tracking-[0.2em] uppercase block mb-2" data-i18n="est_pill">Move-in Expense Estimator</span>
+                        <h2 class="text-2xl sm:text-3xl font-serif-title text-navy-950 mb-4" data-i18n="est_title">入住首期費用預估器</h2>
+                        <p class="text-gray-600 text-sm font-light leading-relaxed mb-6" data-i18n="est_desc">
+                            針對 HK$ 15,000 - $25,000 租金範圍進行精確的入住開支試算。輸入您的意向月租，系統將自動試算履約押金、首月租金、代理佣金及政府印花稅。
+                        </p>
+
+                        <div class="bg-navy-950/5 p-4 rounded border border-navy-950/10 text-xs text-gray-600 space-y-2">
+                            <p class="flex items-center gap-2 text-navy-900 font-semibold" data-i18n="est_ref_title">
+                                <i class="fa-solid fa-calculator text-gold-600"></i>
+                                香港常規首期開支參考
+                            </p>
+                            <p data-i18n="est_ref_1">· 履約按金：一般為 2 個月月租（租約期滿全額可退）</p>
+                            <p data-i18n="est_ref_2">· 首期預付：1 個月首月租金</p>
+                            <p data-i18n="est_ref_3">· 代理佣金：標準為半個月租金（租客部分）</p>
+                            <p data-i18n="est_ref_4">· 印花稅（打厘印）：約年租金之 0.25% + HK$5（與業主平分）</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Calculator Form -->
+                    <div class="lg:col-span-7 bg-navy-950 text-white p-6 sm:p-8 rounded-lg border border-gold-500/30">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
+                            <!-- Monthly Rent Input -->
+                            <div>
+                                <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="lbl_intent_rent">意向月租 (HKD / 月)</label>
+                                <div class="relative">
+                                    <span class="absolute left-3 top-2.5 text-gray-400 text-sm">$</span>
+                                    <input type="number" id="calc-rent" value="19500" min="15000" max="25000" step="500" oninput="calculateRentalExpense()" 
+                                           class="w-full bg-navy-900/90 border border-white/20 rounded py-2 pl-8 pr-3 text-white text-sm focus:outline-none focus:border-gold-500">
+                                </div>
+                            </div>
+
+                            <!-- Deposit Months -->
+                            <div>
+                                <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="lbl_deposit_months">租賃押金 (月數)</label>
+                                <select id="calc-deposit-months" onchange="calculateRentalExpense()" class="w-full bg-navy-900/90 border border-white/20 rounded py-2 px-3 text-white text-sm focus:outline-none focus:border-gold-500 cursor-pointer">
+                                    <option value="2" selected data-i18n="opt_dep_2">2 個月押金 (標準)</option>
+                                    <option value="1" data-i18n="opt_dep_1">1 個月押金 (短租/特別條款)</option>
+                                </select>
+                            </div>
+
+                            <!-- Management Fee Option -->
+                            <div>
+                                <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="lbl_mgmt_fee">管理費及差餉</label>
+                                <input type="text" readonly id="calc-inc-fee-text" value="Jardine Living 全線全包" 
+                                       class="w-full bg-navy-900/50 border border-white/10 rounded py-2 px-3 text-gray-300 text-xs">
+                            </div>
+
+                            <!-- Agency Fee Option -->
+                            <div>
+                                <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="lbl_agency_fee">地產代理佣金</label>
+                                <select id="calc-agency-fee" onchange="calculateRentalExpense()" class="w-full bg-navy-900/90 border border-white/20 rounded py-2 px-3 text-white text-sm focus:outline-none focus:border-gold-500 cursor-pointer">
+                                    <option value="0.5" selected data-i18n="opt_ag_half">半個月租金 (0.5 Month)</option>
+                                    <option value="0" data-i18n="opt_ag_zero">免佣金優惠專案 (0 Month)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Calculation Output Table -->
+                        <div class="pt-6 border-t border-white/10 space-y-2.5 text-xs">
+                            <div class="flex justify-between text-gray-300">
+                                <span data-i18n="res_dep_lbl">履約押金 (Rental Deposit):</span>
+                                <span id="res-deposit" class="font-mono text-white font-medium">HK$ 39,000</span>
+                            </div>
+                            <div class="flex justify-between text-gray-300">
+                                <span data-i18n="res_1st_lbl">預付首月租金 (1st Month Rent):</span>
+                                <span id="res-first-rent" class="font-mono text-white font-medium">HK$ 19,500</span>
+                            </div>
+                            <div class="flex justify-between text-gray-300">
+                                <span data-i18n="res_ag_lbl">預估地產代理佣金 (Agency Fee):</span>
+                                <span id="res-agency" class="font-mono text-white font-medium">HK$ 9,750</span>
+                            </div>
+                            <div class="flex justify-between text-gray-300">
+                                <span data-i18n="res_stamp_lbl">預估政府印花稅 (Stamp Duty - 租客部分):</span>
+                                <span id="res-stamp" class="font-mono text-white font-medium">HK$ 54</span>
+                            </div>
+
+                            <div class="mt-4 pt-4 border-t border-white/20 flex justify-between items-center bg-gold-500/10 p-4 rounded border border-gold-500/30">
+                                <div>
+                                    <span class="text-xs font-semibold text-gold-400 block uppercase tracking-wider" data-i18n="res_total_title">預估總入住首期資金 (Total Move-in Cost)</span>
+                                    <span class="text-[10px] text-gray-400" data-i18n="res_total_sub">包含押金、首月租金、佣金及法定印花稅</span>
+                                </div>
+                                <span id="res-total-movein" class="font-serif-title font-bold text-2xl text-gold-400">HK$ 68,304</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. LOCATIONS & LIFESTYLE -->
+    <section id="locations" class="py-20 bg-navy-950 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-gold-400 font-semibold text-xs tracking-[0.3em] uppercase block mb-2" data-i18n="loc_pill">Prime Locations</span>
+                <h2 class="text-3xl sm:text-4xl font-serif-title font-light" data-i18n="loc_title">
+                    Jardine Living 市區 6 大核心地段
+                </h2>
+                <div class="w-16 h-0.5 bg-gold-500 mx-auto mt-4 mb-4"></div>
+                <p class="text-gray-300 font-light text-sm" data-i18n="loc_desc">深耕市區主要生活圈，為上班族與都市精英提供最便捷的住宅體驗。</p>
+            </div>
+
+            <div id="district-cards-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dynamic Location Cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CONTACT & APPOINTMENT BANNER -->
+    <section id="contact" class="py-20 bg-navy-900 text-white relative border-t border-gold-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-serif-title font-light mb-4" data-i18n="cta_title">預約私人睇樓導賞</h2>
+            <p class="text-gray-300 max-w-2xl mx-auto font-light text-sm sm:text-base mb-8" data-i18n="cta_desc">
+                Jardine Living 專業租務團隊為您提供專屬看房服務，無縫對接租務流程與合約簽署。
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <button onclick="openBookingModal()" class="px-8 py-3.5 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold text-xs tracking-widest uppercase transition-all shadow-lg rounded-sm" data-i18n="btn_book_now">
+                    預約現場專人睇樓
+                </button>
+                <a href="tel:25811262" class="px-8 py-3.5 border border-gold-500/50 hover:bg-gold-500/10 text-gold-400 font-semibold text-xs tracking-widest uppercase transition-all rounded-sm flex items-center gap-2">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+852 2581 1262 (<span data-i18n="hotline_lbl">租務熱線</span>)</span>
+                </a>
+                <a href="mailto:kongwell34@gmail.com" class="px-8 py-3.5 border border-white/20 hover:bg-white/10 text-white font-semibold text-xs tracking-widest uppercase transition-all rounded-sm flex items-center gap-2">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>kongwell34@gmail.com</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="bg-navy-950 text-gray-400 border-t border-gold-500/20 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 border border-gold-500 flex items-center justify-center rotate-45 bg-navy-900/50">
+                            <span class="text-gold-500 font-serif font-bold text-base -rotate-45">J</span>
+                        </div>
+                        <span class="text-lg tracking-widest font-serif font-semibold text-white uppercase">Jardine Living</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed max-w-sm mb-4" data-i18n="footer_about">
+                        精選市區核心 6 大熱門地區，專注 HK$ 15,000 至 $25,000 之優質開放式、1 房及 2 房尊尚住宅租賃。
+                    </p>
+                    <div class="flex space-x-4 text-gold-400">
+                        <a href="mailto:kongwell34@gmail.com" class="hover:text-white transition-colors" title="Email Us"><i class="fa-solid fa-envelope text-lg"></i></a>
+                        <a href="tel:25811262" class="hover:text-white transition-colors" title="Call Us"><i class="fa-solid fa-phone text-lg"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-weixin text-lg"></i></a>
+                        <a href="#" class="hover:text-white transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white text-xs font-semibold uppercase tracking-wider mb-4 border-b border-gold-500/30 pb-2" data-i18n="footer_links_title">快速連結 Links</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#hero" class="hover:text-gold-400 transition-colors" data-i18n="nav_home">首頁 Home</a></li>
+                        <li><a href="#portfolio" class="hover:text-gold-400 transition-colors" data-i18n="nav_portfolio">10 大精選住宅</a></li>
+                        <li><a href="#estimator" class="hover:text-gold-400 transition-colors" data-i18n="nav_estimator">入住開支試算器</a></li>
+                        <li><a href="#locations" class="hover:text-gold-400 transition-colors" data-i18n="nav_locations">市區 6 大地段</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white text-xs font-semibold uppercase tracking-wider mb-4 border-b border-gold-500/30 pb-2" data-i18n="footer_contact_title">租務總部 Contact</h4>
+                    <p class="text-xs leading-relaxed mb-2" data-i18n="footer_address">香港中環康樂廣場 1 號 Jardine House 45 樓</p>
+                    <p class="text-xs mb-1"><span data-i18n="lbl_hotline">租務專線</span>: <a href="tel:25811262" class="text-gold-400 hover:underline">+852 2581 1262</a></p>
+                    <p class="text-xs"><span data-i18n="lbl_email">電郵</span>: <a href="mailto:kongwell34@gmail.com" class="text-gold-400 hover:underline">kongwell34@gmail.com</a></p>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-[11px] text-gray-500">
+                <p>&copy; 2026 Jardine Living Limited. <span data-i18n="licence_lbl">地產代理牌照號碼</span>: C-039327</p>
+                <div class="flex space-x-4 mt-4 sm:mt-0">
+                    <a href="#" class="hover:underline" data-i18n="link_privacy">私隱政策</a>
+                    <a href="#" class="hover:underline" data-i18n="link_disclaimer">免責聲明</a>
+                    <a href="#" class="hover:underline" data-i18n="link_terms">租賃條款指南</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 9. PROPERTY DETAILS MODAL -->
+    <div id="property-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-gold-500/30 relative">
+            <button onclick="closePropertyModal()" class="absolute top-4 right-4 z-10 w-9 h-9 bg-navy-950/80 text-white hover:text-gold-400 rounded-full flex items-center justify-center transition-colors focus:outline-none">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="modal-content-container"></div>
+        </div>
+    </div>
+
+    <!-- 10. BOOKING MODAL -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-navy-950 text-white rounded-lg max-w-lg w-full p-6 sm:p-8 border border-gold-500/40 relative shadow-2xl">
+            <button onclick="closeBookingModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <span class="text-gold-400 font-semibold text-xs tracking-widest uppercase block mb-1">Viewing Appointment</span>
+                <h3 class="text-2xl font-serif-title text-white" data-i18n="modal_book_title">預約現場專人睇樓</h3>
+                <div class="w-10 h-0.5 bg-gold-500 mx-auto mt-2"></div>
+            </div>
+
+            <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                <input type="hidden" id="booking-property-title" value="一般租賃查詢">
+
+                <div>
+                    <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_target">心水租賃單位 Target Property</label>
+                    <input type="text" id="booking-property-display" readonly value="所有精選單位 / 顧問推薦" 
+                           class="w-full bg-navy-900/60 border border-gold-500/30 rounded py-2 px-3 text-xs text-gray-200">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_name">貴賓姓名 Name *</label>
+                        <input type="text" required placeholder="Mr. / Ms." 
+                               class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_mobile">聯絡電話 Mobile *</label>
+                        <input type="tel" required placeholder="+852 9123 4567" 
+                               class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_email">電子郵箱 Email Address *</label>
+                    <input type="email" required placeholder="tenant@example.com" 
+                           class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_movein">預計入住日期 Target Move-in *</label>
+                        <input type="date" required id="booking-movein-date" 
+                               class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_term">偏好租期 Lease Term</label>
+                        <select class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500">
+                            <option>12 Months (1 Year)</option>
+                            <option selected>24 Months (2 Years)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_remarks">特別租務需求 Remarks</label>
+                    <textarea rows="2" placeholder="..." 
+                              class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold text-xs tracking-widest uppercase transition-colors rounded-sm mt-2" data-i18n="btn_submit_booking">
+                    提交睇樓預約申請
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 11. WISHLIST DRAWER -->
+    <div id="wishlist-drawer" class="fixed inset-y-0 right-0 w-full sm:w-96 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out border-l border-gold-500/30 flex flex-col">
+        <div class="p-6 bg-navy-950 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bookmark text-gold-400"></i>
+                <h3 class="font-serif-title font-medium text-lg" data-i18n="drawer_wishlist_title">我的收藏租賃物業</h3>
+            </div>
+            <button onclick="toggleWishlistDrawer()" class="text-gray-400 hover:text-white">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+        </div>
+
+        <div id="wishlist-items-container" class="p-6 flex-1 overflow-y-auto space-y-4"></div>
+
+        <div class="p-6 bg-pearl border-t border-gray-200">
+            <button onclick="openBookingForWishlist()" class="w-full py-3 bg-gold-500 hover:bg-gold-400 text-navy-950 font-semibold text-xs uppercase tracking-widest rounded-sm" data-i18n="btn_book_wishlist">
+                一鍵預約所有收藏物業睇樓
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT STATE & I18N DICTIONARY -->
+    <script>
+        // Current Language State
+        let currentLang = 'zh-HK';
+
+        // i18n Translations Dictionary
+        const i18n = {
+            'zh-HK': {
+                tagline: "優質住宅租賃",
+                nav_home: "首頁",
+                nav_portfolio: "精選市區租務",
+                nav_estimator: "首期開支試算",
+                nav_locations: "地段覆蓋",
+                nav_contact: "聯絡我們",
+                btn_schedule: "預約現場看房",
+                hero_pill: "市區 6 大熱門地區 · 月租 HK$ 15,000 - 25,000",
+                hero_subtitle: "優質市區生活 · 理想租賃之選",
+                hero_desc: "涵蓋上環、中環、灣仔、西營盤、西灣河及筲箕灣。精選 10 套月租 HK$ 15,000 至 $25,000 之高品質開放式至 2 房精裝公寓。",
+                label_district: "地區 District",
+                label_layout: "戶型 Layout",
+                label_maxrent: "最高月租 Max Rent",
+                btn_search: "搜尋 10 大租賃項目",
+                scroll_explore: "向下滾動探索租賃項目",
+                stat_1_val: "6 大地區",
+                stat_1_lbl: "市區極致便捷地段",
+                stat_2_val: "HK$ 15K - 25K",
+                stat_2_lbl: "實惠高質租金區間",
+                stat_3_val: "100% 免管理費",
+                stat_3_lbl: "全線包含管理費及差餉",
+                stat_4_val: "1 - 2 年",
+                stat_4_lbl: "彈性靈活租約條款",
+                portfolio_pill: "HONG KONG ISLAND SELECTION",
+                portfolio_title: "Jardine Living 10 大市區精選住宅",
+                portfolio_desc: "所有單位均位於港鐵沿線或核心社區，配備優質裝修與家電，月租全涵蓋 HK$ 15,000 至 $25,000。",
+                no_results: "沒有符合您篩選條件的租賃物業",
+                btn_reset_filters: "重置所有篩選條件",
+                est_pill: "MOVE-IN EXPENSE ESTIMATOR",
+                est_title: "入住首期費用預估器",
+                est_desc: "針對 HK$ 15,000 - $25,000 租金範圍進行精確的入住開支試算。輸入您的意向月租，系統將自動試算履約押金、首月租金、代理佣金及政府印花稅。",
+                est_ref_title: "香港常規首期開支參考",
+                est_ref_1: "· 履約按金：一般為 2 個月月租（租約期滿全額可退）",
+                est_ref_2: "· 首期預付：1 個月首月租金",
+                est_ref_3: "· 代理佣金：標準為半個月租金（租客部分）",
+                est_ref_4: "· 印花稅（打厘印）：約年租金之 0.25% + HK$5（與業主平分）",
+                lbl_intent_rent: "意向月租 (HKD / 月)",
+                lbl_deposit_months: "租賃押金 (月數)",
+                opt_dep_2: "2 個月押金 (標準)",
+                opt_dep_1: "1 個月押金 (短租/特別條款)",
+                lbl_mgmt_fee: "管理費及差餉",
+                mgmt_inc_val: "Jardine Living 全線全包",
+                lbl_agency_fee: "地產代理佣金",
+                opt_ag_half: "半個月租金 (0.5 Month)",
+                opt_ag_zero: "免佣金優惠專案 (0 Month)",
+                res_dep_lbl: "履約押金 (Rental Deposit):",
+                res_1st_lbl: "預付首月租金 (1st Month Rent):",
+                res_ag_lbl: "預估地產代理佣金 (Agency Fee):",
+                res_stamp_lbl: "預估政府印花稅 (Stamp Duty - 租客部分):",
+                res_total_title: "預估總入住首期資金 (Total Move-in Cost)",
+                res_total_sub: "包含押金、首月租金、佣金及法定印花稅",
+                loc_pill: "PRIME LOCATIONS",
+                loc_title: "Jardine Living 市區 6 大核心地段",
+                loc_desc: "深耕市區主要生活圈，為上班族與都市精英提供最便捷的住宅體驗。",
+                cta_title: "預約私人睇樓導賞",
+                cta_desc: "Jardine Living 專業租務團隊為您提供專屬看房服務，無縫對接租務流程與合約簽署。",
+                btn_book_now: "預約現場專人睇樓",
+                hotline_lbl: "租務熱線",
+                footer_about: "精選市區核心 6 大熱門地區，專注 HK$ 15,000 至 $25,000 之優質開放式、1 房及 2 房尊尚住宅租賃。",
+                footer_links_title: "快速連結 Links",
+                footer_contact_title: "租務總部 Contact",
+                footer_address: "香港灣仔摩理臣山道9號天樂廣場20樓A室",
+                lbl_hotline: "租務專線",
+                lbl_email: "電郵",
+                licence_lbl: "地產代理牌照號碼",
+                link_privacy: "私隱政策",
+                link_disclaimer: "免責聲明",
+                link_terms: "租賃條款指南",
+                modal_book_title: "預約現場專人睇樓",
+                form_target: "心水租賃單位 Target Property",
+                form_name: "貴賓姓名 Name *",
+                form_mobile: "聯絡電話 Mobile *",
+                form_email: "電子郵箱 Email Address *",
+                form_movein: "預計入住日期 Target Move-in *",
+                form_term: "偏好租期 Lease Term",
+                form_remarks: "特別租務需求 Remarks",
+                btn_submit_booking: "提交睇樓預約申請",
+                drawer_wishlist_title: "我的收藏租賃物業",
+                btn_book_wishlist: "一鍵預約所有收藏物業睇樓",
+                btn_view_details: "詳情與租務細節",
+                btn_card_book: "預約睇樓",
+                lbl_rent_month: "/ 月",
+                lbl_sqft_rent: "呎租",
+                lbl_sqft: "實用面積",
+                lbl_layout: "戶型格局",
+                lbl_baths: "衛浴",
+                lbl_all_districts: "全部地區",
+                lbl_all_layouts: "所有戶型",
+                toast_added: "已成功收藏：",
+                toast_removed: "已從收藏清單移除：",
+                toast_booked: "睇樓預約已成功提交！我們的專員將於 2 小時內與您聯絡安排行程。"
+            },
+            'zh-CN': {
+                tagline: "顶级港岛住宅租赁",
+                nav_home: "首页",
+                nav_portfolio: "精选港岛租赁",
+                nav_estimator: "首期开支测算",
+                nav_locations: "地段覆盖",
+                nav_contact: "联系我们",
+                btn_schedule: "预约现场看房",
+                hero_pill: "港岛 6 大热门地区 · 月租 HK$ 15,000 - 25,000",
+                hero_subtitle: "优质港岛生活 · 理想租赁之选",
+                hero_desc: "涵盖上环、中环、湾仔、西营盘、西湾河及筲箕湾。精选 10 套月租 HK$ 15,000 至 $25,000 之高质量开放式至 2 房精装公寓。",
+                label_district: "地区 District",
+                label_layout: "户型 Layout",
+                label_maxrent: "最高月租 Max Rent",
+                btn_search: "搜索 10 大租赁项目",
+                scroll_explore: "向下滚动探索租赁项目",
+                stat_1_val: "6 大地区",
+                stat_1_lbl: "港岛极致便捷地段",
+                stat_2_val: "HK$ 15K - 25K",
+                stat_2_lbl: "实惠高质租金区间",
+                stat_3_val: "100% 免管理费",
+                stat_3_lbl: "全线包含管理费及差饷",
+                stat_4_val: "1 - 2 年",
+                stat_4_lbl: "弹性灵活租约条款",
+                portfolio_pill: "HONG KONG ISLAND SELECTION",
+                portfolio_title: "Jardine Living 10 大港岛精选住宅",
+                portfolio_desc: "所有单位均位于港铁沿线或核心社区，配备优质装修与家电，月租全涵盖 HK$ 15,000 至 $25,000。",
+                no_results: "没有符合您筛选条件的租赁物业",
+                btn_reset_filters: "重置所有筛选条件",
+                est_pill: "MOVE-IN EXPENSE ESTIMATOR",
+                est_title: "入住首期费用预估器",
+                est_desc: "针对 HK$ 15,000 - $25,000 租金范围进行精确的入住开支测算。输入您的意向月租，系统将自动测算履约押金、首月租金、代理佣金及政府印花税。",
+                est_ref_title: "香港常规首期开支参考",
+                est_ref_1: "· 履约押金：一般为 2 个月月租（租约期满全额可退）",
+                est_ref_2: "· 首期预付：1 个月首月租金",
+                est_ref_3: "· 代理佣金：标准为半个月租金（租客部分）",
+                est_ref_4: "· 印花税（打厘印）：约年租金之 0.25% + HK$5（与业主平分）",
+                lbl_intent_rent: "意向月租 (HKD / 月)",
+                lbl_deposit_months: "租赁押金 (月数)",
+                opt_dep_2: "2 个月押金 (标准)",
+                opt_dep_1: "1 个月押金 (短租/特别条款)",
+                lbl_mgmt_fee: "管理费及差饷",
+                mgmt_inc_val: "Jardine Living 全线全包",
+                lbl_agency_fee: "地产代理佣金",
+                opt_ag_half: "半个月租金 (0.5 Month)",
+                opt_ag_zero: "免佣金优惠专案 (0 Month)",
+                res_dep_lbl: "履约押金 (Rental Deposit):",
+                res_1st_lbl: "预付首月租金 (1st Month Rent):",
+                res_ag_lbl: "预估地产代理佣金 (Agency Fee):",
+                res_stamp_lbl: "预估政府印花税 (Stamp Duty - 租客部分):",
+                res_total_title: "预估总入住首期资金 (Total Move-in Cost)",
+                res_total_sub: "包含押金、首月租金、佣金及法定印花税",
+                loc_pill: "PRIME LOCATIONS",
+                loc_title: "Jardine Living 港岛 6 大核心地段",
+                loc_desc: "深耕港岛主要生活圈，为上班族与都市精英提供最便捷的住宅体验。",
+                cta_title: "预约私人看房导赏",
+                cta_desc: "Jardine Living 专业租赁团队为您提供专属看房服务，无缝对接租赁流程与合约签署。",
+                btn_book_now: "预约现场专人看房",
+                hotline_lbl: "租赁热线",
+                footer_about: "精选港岛核心 6 大热门地区，专注 HK$ 15,000 至 $25,000 之优质开放式、1 房及 2 房尊尚住宅租赁。",
+                footer_links_title: "快速链接 Links",
+                footer_contact_title: "租赁总部 Contact",
+                footer_address: "香港中环康乐广场 1 号 Jardine House 45 楼",
+                lbl_hotline: "租赁专线",
+                lbl_email: "电邮",
+                licence_lbl: "地产代理牌照号码",
+                link_privacy: "隐私政策",
+                link_disclaimer: "免责声明",
+                link_terms: "租赁条款指南",
+                modal_book_title: "预约现场专人看房",
+                form_target: "心水租赁单位 Target Property",
+                form_name: "贵宾姓名 Name *",
+                form_mobile: "联系电话 Mobile *",
+                form_email: "电子邮箱 Email Address *",
+                form_movein: "预计入住日期 Target Move-in *",
+                form_term: "偏好租期 Lease Term",
+                form_remarks: "特别租赁需求 Remarks",
+                btn_submit_booking: "提交看房预约申请",
+                drawer_wishlist_title: "我的收藏租赁物业",
+                btn_book_wishlist: "一键预约所有收藏物业看房",
+                btn_view_details: "详情与租赁细节",
+                btn_card_book: "预约看房",
+                lbl_rent_month: "/ 月",
+                lbl_sqft_rent: "呎租",
+                lbl_sqft: "实用面积",
+                lbl_layout: "户型格局",
+                lbl_baths: "卫浴",
+                lbl_all_districts: "全部地区",
+                lbl_all_layouts: "所有户型",
+                toast_added: "已成功收藏：",
+                toast_removed: "已从收藏清单移除：",
+                toast_booked: "看房预约已成功提交！我们的专员将于 2 小时内与您联系安排行程。"
+            },
+            'en': {
+                tagline: "Premium HK Island Rentals",
+                nav_home: "Home",
+                nav_portfolio: "Rentals",
+                nav_estimator: "Estimator",
+                nav_locations: "Districts",
+                nav_contact: "Contact Us",
+                btn_schedule: "Schedule Viewing",
+                hero_pill: "6 HK Island Districts · Rent HK$ 15,000 - 25,000",
+                hero_subtitle: "Premium HK Island Living · Ideal Choice for Lease",
+                hero_desc: "Covering Sheung Wan, Central, Wan Chai, Sai Ying Pun, Sai Wan Ho, and Shau Kei Wan. 10 curated Studios, 1-Bed, and 2-Bed residences.",
+                label_district: "District",
+                label_layout: "Layout",
+                label_maxrent: "Max Monthly Rent",
+                btn_search: "Search 10 Rentals",
+                scroll_explore: "Scroll to Explore Rentals",
+                stat_1_val: "6 Prime Hubs",
+                stat_1_lbl: "Core HK Transit Zones",
+                stat_2_val: "HK$ 15K - 25K",
+                stat_2_lbl: "Accessible Premium Range",
+                stat_3_val: "100% Inclusive",
+                stat_3_lbl: "Management & Rates Included",
+                stat_4_val: "1 - 2 Years",
+                stat_4_lbl: "Flexible Lease Terms",
+                portfolio_pill: "HONG KONG ISLAND SELECTION",
+                portfolio_title: "Jardine Living 10 Featured Rentals",
+                portfolio_desc: "All properties are located near MTR stations or prime hubs, fitted with high-end appliances, priced HK$ 15,000 - $25,000/mo.",
+                no_results: "No rental properties match your current search criteria.",
+                btn_reset_filters: "Reset All Filters",
+                est_pill: "MOVE-IN EXPENSE ESTIMATOR",
+                est_title: "Rental Move-in Cost Estimator",
+                est_desc: "Calculate move-in initial costs accurately for rents between HK$ 15,000 - $25,000. Calculates deposit, 1st month rent, agency fee, and stamp duty.",
+                est_ref_title: "Standard HK Move-in Expense Reference",
+                est_ref_1: "· Rental Deposit: Usually 2 months rent (Fully refundable at contract end)",
+                est_ref_2: "· First Month Payment: 1 month upfront rent",
+                est_ref_3: "· Agency Commission: Standard 0.5 month rent (Tenant portion)",
+                est_ref_4: "· Stamp Duty: ~0.25% of annual rent + HK$5 (50/50 split with landlord)",
+                lbl_intent_rent: "Target Rent (HKD / Month)",
+                lbl_deposit_months: "Security Deposit (Months)",
+                opt_dep_2: "2 Months Deposit (Standard)",
+                opt_dep_1: "1 Month Deposit (Short-term/Special)",
+                lbl_mgmt_fee: "Management & Rates",
+                mgmt_inc_val: "Fully Included by Jardine Living",
+                lbl_agency_fee: "Agency Fee",
+                opt_ag_half: "0.5 Month Rent (Standard)",
+                opt_ag_zero: "0 Month (Special Promotion)",
+                res_dep_lbl: "Security Deposit (Rental Deposit):",
+                res_1st_lbl: "1st Month Upfront Rent:",
+                res_ag_lbl: "Estimated Agency Fee:",
+                res_stamp_lbl: "Estimated Stamp Duty (Tenant share):",
+                res_total_title: "Total Estimated Move-in Capital",
+                res_total_sub: "Includes deposit, 1st month rent, agency fee, and stamp duty",
+                loc_pill: "PRIME LOCATIONS",
+                loc_title: "Jardine Living 6 Key HK Districts",
+                loc_desc: "Deeply rooted in major HK Island hubs, providing seamless urban living for professionals.",
+                cta_title: "Book a Private Viewing Tour",
+                cta_desc: "Jardine Living professional leasing agents provide tailored walkthroughs and smooth contract execution.",
+                btn_book_now: "Schedule Private Viewing",
+                hotline_lbl: "Leasing Hotline",
+                footer_about: "Specialized in 6 core HK Island districts, delivering quality Studio, 1-Bed, and 2-Bed luxury rental homes from HK$ 15,000 - $25,000.",
+                footer_links_title: "Quick Links",
+                footer_contact_title: "Leasing HQ",
+                footer_address: "45/F, Jardine House, 1 Connaught Place, Central, Hong Kong",
+                lbl_hotline: "Leasing Hotline",
+                lbl_email: "Email",
+                licence_lbl: "Estate Agent License No.",
+                link_privacy: "Privacy Policy",
+                link_disclaimer: "Disclaimer",
+                link_terms: "Leasing Terms Guide",
+                modal_book_title: "Book a Viewing Tour",
+                form_target: "Target Property",
+                form_name: "Name *",
+                form_mobile: "Mobile Number *",
+                form_email: "Email Address *",
+                form_movein: "Target Move-in Date *",
+                form_term: "Preferred Lease Term",
+                form_remarks: "Special Requirements / Remarks",
+                btn_submit_booking: "Submit Viewing Request",
+                drawer_wishlist_title: "Saved Rental Properties",
+                btn_book_wishlist: "Book Viewing for All Saved Items",
+                btn_view_details: "View Details & Specs",
+                btn_card_book: "Book Viewing",
+                lbl_rent_month: "/ mo",
+                lbl_sqft_rent: "Rent/sq.ft.",
+                lbl_sqft: "Size",
+                lbl_layout: "Layout",
+                lbl_baths: "Baths",
+                lbl_all_districts: "All Districts",
+                lbl_all_layouts: "All Layouts",
+                toast_added: "Successfully saved: ",
+                toast_removed: "Removed from saved: ",
+                toast_booked: "Viewing request submitted! Our representative will contact you within 2 hours."
+            }
+        };
+
+        // MULTILINGUAL DATASET (10 Properties)
+        const propertiesData = [
+            {
+                id: 1,
+                title: "Jardine SoHo Residence",
+                district: "Sheung Wan",
+                districtMap: { "zh-HK": "上環", "zh-CN": "上环", "en": "Sheung Wan" },
+                bedsCategory: "1",
+                rentRaw: 21500,
+                rentDisplay: "HK$ 21,500",
+                sqft: 420,
+                rentPerSqft: 51.19,
+                baths: 1,
+                bedsMap: { "zh-HK": "1 房", "zh-CN": "1 房", "en": "1 Bed" },
+                layoutMap: { "zh-HK": "1 房 1 廳 + 景觀露台 (近 MTR 上環站 A2 出口)", "zh-CN": "1 房 1 厅 + 景观露台 (近 MTR 上环站 A2 出口)", "en": "1 Bed 1 Bath + Balcony (Near Sheung Wan MTR Exit A2)" },
+                featureMap: { "zh-HK": "上環蘇豪文化圈 · 時尚精裝 1 房", "zh-CN": "上环苏豪文化圈 · 时尚精装 1 房", "en": "Sheung Wan SoHo Hub · Designer 1-Bed" },
+                image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1000&auto=format&fit=crop",
+                gallery: [
+                    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1000&auto=format&fit=crop"
+                ],
+                descMap: {
+                    "zh-HK": "坐落於上環文青咖啡街與蘇豪區交界，步行 3 分鐘即達上環港鐵站。單位設有獨立開放式廚房與精緻景觀露台，非常適合中環金融精英與設計專業人士。",
+                    "zh-CN": "坐落于上环文青咖啡街与苏豪区交界，步行 3 分钟即达上环港铁站。单位设有独立开放式厨房与精致景观露台，非常适合中环金融精英与设计专业人士。",
+                    "en": "Situated at the junction of Sheung Wan cafe street and SoHo, 3-min walk to Sheung Wan MTR. Features open kitchen and balcony, ideal for finance and creative professionals."
+                },
+                leaseTermMap: { "zh-HK": "1 至 2 年租約", "zh-CN": "1 至 2 年租约", "en": "1 - 2 Years Lease" },
+                incFeesMap: { "zh-HK": "包管理費及政府差餉", "zh-CN": "包管理费及政府差饷", "en": "Includes Management Fee & Rates" },
+                parkingMap: { "zh-HK": "周邊設有多個月租停車場", "zh-CN": "周边设有多个月租停车场", "en": "Nearby monthly parking available" },
+                petPolicyMap: { "zh-HK": "允許貓咪入住 (Cat Friendly)", "zh-CN": "允许猫咪入住 (Cat Friendly)", "en": "Cat Friendly" },
+                furnishingMap: { "zh-HK": "附全套品味家具及品牌家電 (Fully Furnished)", "zh-CN": "附全套品味家具及品牌家电 (Fully Furnished)", "en": "Fully Furnished" },
+                amenitiesMap: {
+                    "zh-HK": ["步行3分鐘達上環站", "高空健身室", "智能門鎖系統", "24小時禮賓收發"],
+                    "zh-CN": ["步行3分钟达上环站", "高空健身室", "智能门锁系统", "24小时礼宾收发"],
+                    "en": ["3 min walk to MTR", "Sky Gym", "Smart Lock System", "24/7 Concierge"]
+                }
+            },
+            {
+                id: 2,
+                title: "Jardine Central Loft",
+                district: "Central",
+                districtMap: { "zh-HK": "中環", "zh-CN": "中环", "en": "Central" },
+                bedsCategory: "studio",
+                rentRaw: 24800,
+                rentDisplay: "HK$ 24,800",
+                sqft: 380,
+                rentPerSqft: 65.26,
+                baths: 1,
+                bedsMap: { "zh-HK": "Studio 開放式", "zh-CN": "Studio 开放式", "en": "Studio" },
+                layoutMap: { "zh-HK": "高樓底 Studio + 開放式設計廚房", "zh-CN": "高楼底 Studio + 开放式设计厨房", "en": "High Ceiling Loft Studio + Open Kitchen" },
+                featureMap: { "zh-HK": "中環核心地段 · 3.3米高樓底 Loft", "zh-CN": "中环核心地段 · 3.3米高楼底 Loft", "en": "Central Prime · 3.3m High Ceiling Loft" },
+                image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1000&auto=format&fit=crop",
+                gallery: [
+                    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1000&auto=format&fit=crop"
+                ],
+                descMap: {
+                    "zh-HK": "位於中環擺花街，步行 5 分鐘即達置地廣場與 IFC。擁 3.3 米極高樓底設計，大面積玻璃窗採光十足，配備現代化智能家居與高質感裝修。",
+                    "zh-CN": "位于中环摆花街，步行 5 分钟即达置地广场与 IFC。拥 3.3 米极高楼底设计，大面积玻璃窗采光十足，配备现代化智能家居与高质感装修。",
+                    "en": "Located at Lyndhurst Terrace Central, 5-min walk to Landmark & IFC. 3.3m high ceiling with floor-to-ceiling windows and full smart home gadgets."
+                },
+                leaseTermMap: { "zh-HK": "1 年生約 + 1 年熟約", "zh-CN": "1 年生约 + 1 年熟约", "en": "1 Year Fixed + 1 Year Option" },
+                incFeesMap: { "zh-HK": "包管理費、差餉及高速光纖網絡", "zh-CN": "包管理费、差饷及高速光纤网络", "en": "Includes Management, Rates & Wi-Fi" },
+                parkingMap: { "zh-HK": "無車位", "zh-CN": "无车位", "en": "No parking space" },
+                petPolicyMap: { "zh-HK": "不可養寵物", "zh-CN": "不可养宠物", "en": "No Pets Allowed" },
+                furnishingMap: { "zh-HK": "連全套訂製連壁家具及高級影音電器", "zh-CN": "连全套订制连壁家具及高级影音电器", "en": "Fully Furnished with Designer Fitting" },
+                amenitiesMap: {
+                    "zh-HK": ["中環核心生活圈", "天台露天 Lounge", "門禁卡人臉辨識", "每週一次基礎清潔"],
+                    "zh-CN": ["中环核心生活圈", "天台露天 Lounge", "门禁卡人脸辨识", "每周一次基础清洁"],
+                    "en": ["Central Core Hub", "Rooftop Lounge", "Face ID Access", "Weekly Cleaning Service"]
+                }
+            },
+            {
+                id: 3,
+                title: "Jardine Star Town",
+                district: "Wan Chai",
+                districtMap: { "zh-HK": "灣仔", "zh-CN": "湾仔", "en": "Wan Chai" },
+                bedsCategory: "1",
+                rentRaw: 19800,
+                rentDisplay: "HK$ 19,800",
+                sqft: 410,
+                rentPerSqft: 48.29,
+                baths: 1,
+                bedsMap: { "zh-HK": "1 房", "zh-CN": "1 房", "en": "1 Bed" },
+                layoutMap: { "zh-HK": "1 房 1 廳 + 方正實用獨立睡房", "zh-CN": "1 房 1 厅 + 方正实用独立睡房", "en": "1 Bed 1 Bath Square Layout" },
+                featureMap: { "zh-HK": "灣仔星街小區旁 · 優雅文青住宅", "zh-CN": "湾仔星街小区旁 · 优雅文青住宅", "en": "Adjacent to Star Street · Chic Wan Chai Suite" },
+                image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1000&auto=format&fit=crop",
+                gallery: [
+                    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1000&auto=format&fit=crop"
+                ],
+                descMap: {
+                    "zh-HK": "緊鄰灣仔星街與太古廣場三座，靜中帶旺。室內佈局靈活方正，採用極簡北歐木系風格裝修，提供溫馨舒適的市區住宅體驗。",
+                    "zh-CN": "紧邻湾仔星街与太古广场三座，静中带旺。室内布局灵活方正，采用极简北欧木系风格装修，提供温馨舒适的港岛住宅体验。",
+                    "en": "Adjacent to Star Street Wan Chai and PP3. Quiet, bright, minimalist Nordic wooden interior aesthetic."
+                },
+                leaseTermMap: { "zh-HK": "2 年標準租約", "zh-CN": "2 年标准租约", "en": "2-Year Standard Contract" },
+                incFeesMap: { "zh-HK": "包管理費及差餉", "zh-CN": "包管理费及差饷", "en": "Includes Management Fee & Rates" },
+                parkingMap: { "zh-HK": "鄰近太古廣場月租車位", "zh-CN": "邻近太古广场月租车位", "en": "Pacific Place monthly parking nearby" },
+                petPolicyMap: { "zh-HK": "允許小型寵物入住", "zh-CN": "允许小型宠物入住", "en": "Small Pets Allowed" },
+                furnishingMap: { "zh-HK": "附全套基本家電及衣櫃", "zh-CN": "附全套基本家电及衣柜", "en": "Partially Furnished (Appliances + Wardrobe)" },
+                amenitiesMap: {
+                    "zh-HK": ["星街文青生活圈", "步行達金鐘/灣仔站", "住戶健身室", "電子智能鎖"],
+                    "zh-CN": ["星街文青生活圈", "步行达金钟/湾仔站", "住户健身室", "电子智能锁"],
+                    "en": ["Star Street Precinct", "Walk to Admiralty/Wan Chai MTR", "Resident Gym", "Smart Lock"]
+                }
+            },
+            {
+                id: 4,
+                title: "Jardine High Street Apex",
+                district: "Sai Ying Pun",
+                districtMap: { "zh-HK": "西營盤", "zh-CN": "西营盘", "en": "Sai Ying Pun" },
+                bedsCategory: "1",
+                rentRaw: 18500,
+                rentDisplay: "HK$ 18,500",
+                sqft: 390,
+                rentPerSqft: 47.44,
+                baths: 1,
+                bedsMap: { "zh-HK": "1 房", "zh-CN": "1 房", "en": "1 Bed" },
+                layoutMap: { "zh-HK": "1 房 1 廳 + 開放式陽台", "zh-CN": "1 房 1 厅 + 开放式阳台", "en": "1 Bed 1 Bath with Balcony" },
+                featureMap: { "zh-HK": "西營盤高街特色區 · 鄰近香港大學", "zh-CN": "西营盘高街特色区 · 邻近香港大学", "en": "High Street Precinct · Near HKU" },
+                image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1000&auto=format&fit=crop",
+                gallery: [
+                    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1000&auto=format&fit=crop"
+                ],
+                descMap: {
+                    "zh-HK": "位於西營盤高街中心地帶，離港鐵西營盤站 B2 出口僅 2 分鐘步程。周邊異國餐廳與咖啡館林立，單位附設景觀小陽台，採光極佳。",
+                    "zh-CN": "位于西营盘高街中心地带，离港铁西营盘站 B2 出口仅 2 分钟步程。周边异国餐厅与咖啡馆林立，单位附设景观小阳台，采光极佳。",
+                    "en": "In the heart of High Street Sai Ying Pun, 2-min walk to MTR. Surrounded by dining hot spots, equipped with private balcony."
+                },
+                leaseTermMap: { "zh-HK": "1 至 2 年租約", "zh-CN": "1 至 2 年租约", "en": "1 - 2 Years Lease" },
+                incFeesMap: { "zh-HK": "包管理費及差餉", "zh-CN": "包管理费及差饷", "en": "Includes Management Fee & Rates" },
+                parkingMap: { "zh-HK": "無車位", "zh-CN": "无车位", "en": "No parking space" },
+                petPolicyMap: { "zh-HK": "允許貓咪入住", "zh-CN": "允许猫咪入住", "en": "Cat Friendly" },
+                furnishingMap: { "zh-HK": "半傢俬包含全套廚房電器及冷氣", "zh-CN": "半傢俬包含全套厨房电器及冷气", "en": "Partially Furnished with AC & Kitchenware" },
+                amenitiesMap: {
+                    "zh-HK": ["港鐵站2分鐘步程", "高街美食圈", "24小時物業管理", "空中花園"],
+                    "zh-CN": ["港铁站2分钟步程", "高街美食圈", "24小时物业管理", "空中花园"],
+                    "en": ["2 mins to MTR Exit", "High St Dining Hub", "24/7 Security", "Sky Garden"]
+                }
+            },
+            {
+                id: 5,
+                title: "Jardine Grand Promenade",
+                district: "Sai Wan Ho",
+                districtMap: { "zh-HK": "西灣河", "zh-CN": "西湾河", "en": "Sai Wan Ho" },
+                bedsCategory: "2",
+                rentRaw: 23500,
+                rentDisplay: "HK$ 23,500",
+                sqft: 520,
+                rentPerSqft: 45.19,
+                baths: 1,
+                bedsMap: { "zh-HK": "2 房", "zh-CN": "2 房", "en": "2 Beds" },
+                layoutMap: { "zh-HK": "2 房 1 廳 + 海景觀景窗 (Soho East 旁)", "zh-CN": "2 房 1 厅 + 海景观景窗 (Soho East 旁)", "en": "2 Beds 1 Bath Sea View (Next to Soho East)" },
+                featureMap: { "zh-HK": "西灣河海濱渡假風 · 2房開揚海景", "zh-CN": "西湾河海滨度假风 · 2房开扬海景", "en": "Sai Wan Ho Waterfront · 2 Beds Sea View" },
+                image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop",
+                gallery: [
+                    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1000&auto=format&fit=crop"
+                ],
+                descMap: {
+                    "zh-HK": "座落於西灣河鯉景灣及 Soho East 海濱長廊旁，單位可遠眺維港東海景。2 房格局實用，配備大型會所設施，是港島東家庭與小資族的優質選擇。",
+                    "zh-CN": "座落于西湾河鲤景湾及 Soho East 海滨长廊旁，单位可远眺维港东海景。2 房格局实用，配备大型会所设施，是港岛东家庭与小资族的优质选择。",
+                    "en": "Situated along Lei King Wan promenade and Soho East, with harbour views. Full clubhouse amenities, great for small families."
+                },
+                leaseTermMap: { "zh-HK": "2 年租約", "zh-CN": "2 年租约", "en": "2 Years Lease" },
+                incFeesMap: { "zh-HK": "包管理費及差餉", "zh-CN": "包管理费及差饷", "en": "Includes Management Fee & Rates" },
+                parkingMap: { "zh-HK": "可選租地庫專屬車位", "zh-CN": "可选租地库专属车位", "en": "Basement parking optional" },
+                petPolicyMap: { "zh-HK": "允許飼養寵物 (Pet Friendly)", "zh-CN": "允许饲养宠物 (Pet Friendly)", "en": "Pet Friendly" },
+                furnishingMap: { "zh-HK": "連基礎家電及部分家具", "zh-CN": "连基础家电及部分家具", "en": "Partially Furnished" },
+                amenitiesMap: {
+                    "zh-HK": ["海濱公園長廊", "大型住戶會所", "戶外游泳池", "保齡球場及健身室"],
+                    "zh-CN": ["海滨公园长廊", "大型住户会所", "户外游泳池", "保龄球场及健身室"],
+                    "en": ["Waterfront Promenade", "Grand Clubhouse", "Outdoor Pool", "Bowling & Gym"]
+                }
+            },
+            {
+                id: 6,
+                title: "Jardine Bayview Court",
+                district: "Shau Kei Wan",
+                districtMap: { "zh-HK": "筲箕灣", "zh-CN": "筲箕湾", "en": "Shau Kei Wan" },
+                bedsCategory: "1",
+                rentRaw: 16200,
+                rentDisplay: "HK$ 16,200",
+                sqft: 360,
+                rentPerSqft: 45.00,
+                baths: 1,
+                bedsMap: { "zh-HK": "1 房", "zh-CN": "1 房", "en": "1 Bed" },
+                layoutMap: { "zh-HK": "1 房 1 廳 + 現代化乾濕分離浴室", "zh-CN": "1 房 1 厅 + 现代化干湿分离浴室", "en": "1 Bed 1 Bath Modern Layout" },
+                featureMap: { "zh-HK": "筲箕灣新式住宅 · 高 CP 值首選", "zh-CN": "筲箕湾新式住宅 · 高 CP 值首选", "en": "Shau Kei Wan Modern Flat · High Value" },
+                image: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1000&auto=format&fit=crop",
+                gallery: [
+                    "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1000&auto=format&fit=crop"
+                ],
+                descMap: {
+                    "zh-HK": "位於筲箕灣港鐵站旁新落成物業，步行 2 分鐘即達東大街美食街。現代化酒店式大樓設計，室內裝潢新穎，提供高 CP 值的港島生活品質。",
+                    "zh-CN": "位于筲箕湾港铁站旁新落成物业，步行 2 分钟即达东大街美食街。现代化酒店式大楼设计，室内装潢新颖，提供高 CP 值的港岛生活品质。",
+                    "en": "Newly built building near Shau Kei Wan MTR, 2 mins walk to Main Street East food hub. Hotel-style management with great value."
+                },
+                leaseTermMap: { "zh-HK": "1 至 2 年租約", "zh-CN": "1 至 2 年租约", "en": "1 - 2 Years Lease" },
+                incFeesMap: { "zh-HK": "包管理費及差餉", "zh-CN": "包管理费及差饷", "en": "Includes Management Fee & Rates" },
+                parkingMap: { "zh-HK": "無車位", "zh-CN": "无车位", "en": "No parking space" },
+                petPolicyMap: { "zh-HK": "不可養寵物", "zh-CN": "不可养宠物", "en": "No Pets Allowed" },
+                furnishingMap: { "zh-HK": "全新附帶智能家電及雙人床架", "zh-CN": "全新附带智能家电及双人床架", "en": "Furnished with Smart Appliances & Bed Frame" },
+                amenitiesMap: {
+                    "zh-HK": ["東大街美食圈", "步行達港鐵站", "天台空中花園", "自助洗衣設施"],
+                    "zh-CN": ["东大街美食圈", "步行达港铁站", "天台空中花园", "自助洗衣设施"],
+                    "en": ["Main St East Food Hub", "Walk to MTR", "Rooftop Garden", "Laundromat"]
+                }
+            },
+            {
+                id: 7,
+                title: "Jardine Queen's Residence",
+                district: "Sheung Wan",
+                districtMap: { "zh-HK": "上環", "zh-CN": "上环", "en": "Sheung Wan" },
+                bedsCategory: "studio",
+                rentRaw: 17800,
+                rentDisplay: "HK$ 17,800",
+                sqft: 340,
+                rentPerSqft: 52.35,
+                baths: 1,
+                bedsMap: { "zh-HK": "Studio 開放式", "zh-CN": "Studio 开放式", "en": "Studio" },
+                layoutMap: { "zh-HK": "精緻 Studio + 獨立陽台 (皇后大道西)", "zh-CN": "精致 Studio + 独立阳台 (皇后大道西)", "en": "Studio with Private Balcony (Queen's Rd West)" },
+                featureMap: { "zh-HK": "皇后大道西地標 · 精品 Studio", "zh-CN": "皇后大道西地标 · 精品 Studio", "en": "Queen's Road West Landmark · Boutique Studio" },
+                image: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=1000&auto=format&fit=crop",
+                gallery: [
+                    "https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1000&auto=format&fit=crop"
+                ],
+                descMap: {
+                    "zh-HK": "坐落上環皇后大道西，位處中西區精華地段。開放式格局流暢，配備高級嵌入式廚具與獨立露台，即租即住。",
+                    "zh-CN": "坐落上环皇后大道西，位处中西区精华地段。开放式格局流畅，配备高级嵌入式厨具与独立露台，即租即住。",
+                    "en": "Located on Queen's Road West Sheung Wan. Efficient layout with high-end kitchen appliances and private balcony."
+                },
+                leaseTermMap: { "zh-HK": "1 年生約 + 1 年熟約", "zh-CN": "1 年生约 + 1 年熟约", "en": "1 Year Fixed + 1 Year Option" },
+                incFeesMap: { "zh-HK": "包管理費及差餉", "zh-CN": "包管理费及差饷", "en": "Includes Management Fee & Rates" },
+                parkingMap: { "zh-HK": "無車位", "zh-CN": "无车位", "en": "No parking space" },
+                petPolicyMap: { "zh-HK": "可討論小型寵物", "zh-CN": "可讨论小型宠物", "en": "Small Pets Negotiable" },
+                furnishingMap: { "zh-HK": "全連精緻傢俬家具 (Fully Furnished)", "zh-CN": "全连精致傢俬家具 (Fully Furnished)", "en": "Fully Furnished" },
+                amenitiesMap: {
+                    "zh-HK": ["中西區生活圈", "智能密碼門鎖", "共享工作間", "健身設備"],
+                    "zh-CN": ["中西区生活圈", "智能密码门锁", "共享工作间", "健身设备"],
+                    "en": ["Central & Western District", "Smart Lock", "Co-working Lounge", "Fitness Equipment"]
+                }
+            },
+            {
+                id: 8,
+                title: "Jardine Lan Kwai Studio",
+                district: "Central",
+                districtMap: { "zh-HK": "中環", "zh-CN": "中环", "en": "Central" },
+                bedsCategory: "1",
+                rentRaw: 22000,
+                rentDisplay: "HK$ 22,000",
+                sqft: 395,
+                rentPerSqft: 55.70,
+                baths: 1,
+                bedsMap: { "zh-HK": "1 房", "zh-CN": "1 房", "en": "1 Bed" },
+                layoutMap: { "zh-HK": "1 房 1 廳 + 開放式酒吧檯廚房", "zh-CN": "1 房 1 厅 + 开放式酒吧台厨房", "en": "1 Bed 1 Bath with Bar Counter Kitchen" },
+                featureMap: { "zh-HK": "中環半山扶梯旁 · 不夜城休閒生活", "zh-CN": "中环半山扶梯旁 · 不夜城休闲生活", "en": "By Central Escalator · Vibrant Lifestyle" },
+                image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=1000&auto=format&fit=crop",
+                gallery: [
+                    "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=1000&auto=format&fit=crop"
+                ],
+                descMap: {
+                    "zh-HK": "距離中環至半山自動扶梯僅數步之遙，輕鬆直達 Soho 與蘭桂坊。室內設計時尚前衛，配備開放式中島酒吧檯，享受最時尚的中環生活。",
+                    "zh-CN": "距离中环至半山自动扶梯仅数步之遥，轻松直达 Soho 与兰桂坊。室内设计时尚前卫，配备开放式中岛酒吧台，享受最时尚的中环生活。",
+                    "en": "Steps away from Mid-Levels Escalator with easy access to Soho & LKF. Modern interior with kitchen island bar."
+                },
+                leaseTermMap: { "zh-HK": "1 至 2 年租約", "zh-CN": "1 至 2 年租约", "en": "1 - 2 Years Lease" },
+                incFeesMap: { "zh-HK": "包管理費及差餉", "zh-CN": "包管理费及差饷", "en": "Includes Management Fee & Rates" },
+                parkingMap: { "zh-HK": "無車位", "zh-CN": "无车位", "en": "No parking space" },
+                petPolicyMap: { "zh-HK": "不可養寵物", "zh-CN": "不可养宠物", "en": "No Pets Allowed" },
+                furnishingMap: { "zh-HK": "全連設計師家具與進口家電", "zh-CN": "全连设计师家具与进口家电", "en": "Fully Furnished with Imported Brands" },
+                amenitiesMap: {
+                    "zh-HK": ["緊鄰半山扶梯", "中環 Soho 區", "24小時安全監控", "隔音雙層玻璃"],
+                    "zh-CN": ["紧邻半山扶梯", "中环 Soho 区", "24小时安全监控", "隔音双层玻璃"],
+                    "en": ["Mid-Levels Escalator", "Central SoHo Zone", "24/7 Security", "Double Glazed Windows"]
+                }
+            },
+            {
+                id: 9,
+                title: "Jardine Johnston Suite",
+                district: "Wan Chai",
+                districtMap: { "zh-HK": "灣仔", "zh-CN": "湾仔", "en": "Wan Chai" },
+                bedsCategory: "2",
+                rentRaw: 24000,
+                rentDisplay: "HK$ 24,000",
+                sqft: 480,
+                rentPerSqft: 50.00,
+                baths: 1,
+                bedsMap: { "zh-HK": "2 房", "zh-CN": "2 房", "en": "2 Beds" },
+                layoutMap: { "zh-HK": "2 房 1 廳 + 獨立乾濕分離衛浴", "zh-CN": "2 房 1 厅 + 独立干湿分离卫浴", "en": "2 Beds 1 Bath City Suite" },
+                featureMap: { "zh-HK": "莊士敦道核心 · 精緻 2 房市區住宅", "zh-CN": "庄士敦道核心 · 精致 2 房市区住宅", "en": "Johnston Road Wan Chai · Prime 2-Bed" },
+                image: "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?q=80&w=1000&auto=format&fit=crop",
+                gallery: [
+                    "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1000&auto=format&fit=crop"
+                ],
+                descMap: {
+                    "zh-HK": "位於灣仔莊士敦道，步行 1 分鐘達灣仔港鐵站。雙睡房設計方正無斜角，適合兩位專業人士合租或小家庭入住，生活機能無可匹敵。",
+                    "zh-CN": "位于湾仔庄士敦道，步行 1 分钟达湾仔港铁站。双睡房设计方正无斜角，适合两位专业人士合租或小家庭入住，生活技能无可匹敌。",
+                    "en": "On Johnston Road Wan Chai, 1-min walk to Wan Chai MTR. 2 spacious bedrooms, excellent layout for flatmates or small families."
+                },
+                leaseTermMap: { "zh-HK": "2 年租約", "zh-CN": "2 年租约", "en": "2 Years Lease" },
+                incFeesMap: { "zh-HK": "包管理費及差餉", "zh-CN": "包管理费及差饷", "en": "Includes Management Fee & Rates" },
+                parkingMap: { "zh-HK": "無車位", "zh-CN": "无车位", "en": "No parking space" },
+                petPolicyMap: { "zh-HK": "允許小型寵物", "zh-CN": "允许小型宠物", "en": "Small Pets Allowed" },
+                furnishingMap: { "zh-HK": "連全套雙人床、衣櫃及嵌入式家電", "zh-CN": "连全套双人床、衣柜及嵌入式家电", "en": "Fully Furnished with Double Beds & Appliances" },
+                amenitiesMap: {
+                    "zh-HK": ["灣仔港鐵站1分鐘", "利東街購物區", "24小時保安", "電梯智能卡"],
+                    "zh-CN": ["湾仔港铁站1分钟", "利东街购物区", "24小时保安", "电梯智能卡"],
+                    "en": ["1 min to Wan Chai MTR", "Lee Tung Avenue", "24/7 Security", "Smart Keycard"]
+                }
+            },
+            {
+                id: 10,
+                title: "Jardine First Street Urban",
+                district: "Sai Ying Pun",
+                districtMap: { "zh-HK": "西營盤", "zh-CN": "西营盘", "en": "Sai Ying Pun" },
+                bedsCategory: "studio",
+                rentRaw: 15500,
+                rentDisplay: "HK$ 15,500",
+                sqft: 320,
+                rentPerSqft: 48.44,
+                baths: 1,
+                bedsMap: { "zh-HK": "Studio 開放式", "zh-CN": "Studio 开放式", "en": "Studio" },
+                layoutMap: { "zh-HK": "採光良好 Studio + 精緻陽台 (第一街)", "zh-CN": "采光良好 Studio + 精致阳台 (第一街)", "en": "Bright Studio with Balcony (First Street)" },
+                featureMap: { "zh-HK": "第一街溫馨 Studio · 港鐵站旁超值租選擇", "zh-CN": "第一街温馨 Studio · 港铁站旁超值租选择", "en": "First Street SYP · High Value Studio" },
+                image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop",
+                gallery: [
+                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=1000&auto=format&fit=crop"
+                ],
+                descMap: {
+                    "zh-HK": "位於西營盤第一街靜巷，提供寧靜舒適的個人居住空間。月租只需 HK$ 15,500，全包管理費，為港島區性價比極高之精緻住宅。",
+                    "zh-CN": "位于西营盘第一街静巷，提供宁静舒适的个人居住空间。月租只需 HK$ 15,500，全包管理费，为港岛区性价比极高之精致住宅。",
+                    "en": "Quiet lane off First Street Sai Ying Pun. Rent HK$15,500 inclusive of fees. Unbeatable value in HK Island."
+                },
+                leaseTermMap: { "zh-HK": "1 至 2 年租約", "zh-CN": "1 至 2 年租约", "en": "1 - 2 Years Lease" },
+                incFeesMap: { "zh-HK": "包管理費及差餉", "zh-CN": "包管理费及差饷", "en": "Includes Management Fee & Rates" },
+                parkingMap: { "zh-HK": "無車位", "zh-CN": "无车位", "en": "No parking space" },
+                petPolicyMap: { "zh-HK": "允許貓咪入住", "zh-CN": "允许猫咪入住", "en": "Cat Friendly" },
+                furnishingMap: { "zh-HK": "全連精緻傢俬家具", "zh-CN": "全连精致傢俬家具", "en": "Fully Furnished" },
+                amenitiesMap: {
+                    "zh-HK": ["西營盤站步行3分鐘", "靜巷宜居", "門禁安全系統", "頂層休閒平台"],
+                    "zh-CN": ["西营盘站步行3分钟", "静巷宜居", "门禁安全系统", "顶层休闲平台"],
+                    "en": ["3 mins walk to SYP MTR", "Quiet Neighborhood", "Keycard Access", "Rooftop Terrace"]
+                }
+            }
+        ];
+
+        // DISTRICT CARDS DATA
+        const districtCardsData = [
+            { key: "Sheung Wan", zhHK: "上環", zhCN: "上环", en: "Sheung Wan", descHK: "融合文青咖啡館、藝廊與中環金融區步行圈，享受現代簡約與文化底蘊兼備的社區氛圍。", descCN: "融合文青咖啡馆、艺廊与中环金融区步行圈，享受现代简约与文化底蕴兼备的社区氛围。", descEN: "Chic cafe scene, art galleries, and walking distance to Central financial hub." },
+            { key: "Central", zhHK: "中環", zhCN: "中环", en: "Central", descHK: "全港核心商業與娛樂樞紐，毗鄰 Soho 區與置地廣場，極致縮短上下班通勤時間。", descCN: "全港核心商业与娱乐枢纽，毗邻 Soho 区与置地广场，极致缩短上下班通勤时间。", descEN: "Hong Kong's premier financial and nightlife hub, steps from IFC and SoHo." },
+            { key: "Wan Chai", zhHK: "灣仔", zhCN: "湾仔", en: "Wan Chai", descHK: "匯聚特色美食、星街小區文青氛圍與多條交通動線，打造多元豐富的港島都市生活。", descCN: "汇聚特色美食、星街小区文青氛围与多条交通动线，打造多元丰富的港岛都市生活。", descEN: "Vibrant dining, Star Street precinct, and excellent public transport links." },
+            { key: "Sai Ying Pun", zhHK: "西營盤", zhCN: "西营盘", en: "Sai Ying Pun", descHK: "緊鄰香港大學與高街美食區，生活機能極佳，為近年中西區最受歡迎之新興租務地帶。", descCN: "紧邻香港大学与高街美食区，生活技能极佳，为近年中西区最受欢迎之新兴租赁地带。", descEN: "Adjacent to HKU and High Street dining, popular among expats and young pros." },
+            { key: "Sai Wan Ho", zhHK: "西灣河", zhCN: "西湾河", en: "Sai Wan Ho", descHK: "港島東海岸休閒住宅區，毗鄰太古城商業圈與鯉景灣 Soho East 海濱長廊。", descCN: "港岛东海岸休闲住宅区，毗邻太古城商业圈与鲤景湾 Soho East 海滨长廊。", descEN: "Waterfront living in HK East, next to Taikoo Place and Soho East promenade." },
+            { key: "Shau Kei Wan", zhHK: "筲箕灣", zhCN: "筲箕湾", en: "Shau Kei Wan", descHK: "東區交通樞紐，食肆林立且生活開支平易近人，提供極高 CP 值之現代化新式住宅。", descCN: "东区交通枢纽，食肆林立且生活开支平易近人，提供极高 CP 值之现代化新式住宅。", descEN: "HK East transport hub with rich food heritage and high-value modern flats." }
+        ];
+
+        // WISHLIST STATE
+        let wishlist = JSON.parse(localStorage.getItem('jardine_rental_wishlist')) || [];
+
+        // INITIALIZE APP
+        window.onload = function() {
+            setLanguage('zh-HK');
+            calculateRentalExpense();
+            
+            const futureDate = new Date();
+            futureDate.setDate(futureDate.getDate() + 14);
+            const dateInput = document.getElementById('booking-movein-date');
+            if(dateInput) {
+                dateInput.value = futureDate.toISOString().split('T')[0];
+                dateInput.min = new Date().toISOString().split('T')[0];
+            }
+        };
+
+        // LANGUAGE SWITCHER ENGINE
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            // Toggle language button highlight
+            document.querySelectorAll('[id^="lang-"]').forEach(btn => {
+                btn.className = "px-2 py-0.5 rounded text-gray-400 hover:text-white transition-all";
+            });
+            const activeBtn = document.getElementById(`lang-${lang}`);
+            if(activeBtn) {
+                activeBtn.className = "px-2 py-0.5 rounded text-gold-400 font-medium transition-all bg-gold-500/10 border border-gold-500/30";
+            }
+
+            // Translate Static Labels
+            document.querySelectorAll('[data-i18n]').forEach(elem => {
+                const key = elem.getAttribute('data-i18n');
+                if (i18n[lang] && i18n[lang][key]) {
+                    elem.innerText = i18n[lang][key];
+                }
+            });
+
+            // Update Input Placeholders & Dynamic Values
+            const incText = document.getElementById('calc-inc-fee-text');
+            if(incText && i18n[lang]['mgmt_inc_val']) {
+                incText.value = i18n[lang]['mgmt_inc_val'];
+            }
+
+            // Render Dynamic Components
+            renderFilterOptions();
+            renderDistrictCards();
+            updateWishlistUI();
+            applyFilters();
+            calculateRentalExpense();
+        }
+
+        // RENDER FILTER DROPDOWNS
+        function renderFilterOptions() {
+            const dict = i18n[currentLang];
+            
+            // District Select Options
+            const regionSelect = document.getElementById('hero-region');
+            const currentReg = regionSelect ? regionSelect.value : 'all';
+            regionSelect.innerHTML = `
+                <option value="all">${dict.lbl_all_districts}</option>
+                <option value="Sheung Wan">${currentLang === 'en' ? 'Sheung Wan' : (currentLang === 'zh-CN' ? '上环' : '上環')}</option>
+                <option value="Central">${currentLang === 'en' ? 'Central' : (currentLang === 'zh-CN' ? '中环' : '中環')}</option>
+                <option value="Wan Chai">${currentLang === 'en' ? 'Wan Chai' : (currentLang === 'zh-CN' ? '湾仔' : '灣仔')}</option>
+                <option value="Sai Ying Pun">${currentLang === 'en' ? 'Sai Ying Pun' : (currentLang === 'zh-CN' ? '西营盘' : '西營盤')}</option>
+                <option value="Sai Wan Ho">${currentLang === 'en' ? 'Sai Wan Ho' : (currentLang === 'zh-CN' ? '西湾河' : '西灣河')}</option>
+                <option value="Shau Kei Wan">${currentLang === 'en' ? 'Shau Kei Wan' : (currentLang === 'zh-CN' ? '筲箕湾' : '筲箕灣')}</option>
+            `;
+            if(regionSelect) regionSelect.value = currentReg || 'all';
+
+            // Layout Select Options
+            const bedsSelect = document.getElementById('hero-beds');
+            const currentBeds = bedsSelect ? bedsSelect.value : 'all';
+            bedsSelect.innerHTML = `
+                <option value="all">${dict.lbl_all_layouts}</option>
+                <option value="studio">Studio</option>
+                <option value="1">1 ${currentLang === 'en' ? 'Bed' : '房'}</option>
+                <option value="2">2 ${currentLang === 'en' ? 'Beds' : '房'}</option>
+            `;
+            if(bedsSelect) bedsSelect.value = currentBeds || 'all';
+
+            // Filter Tab Buttons
+            const tabsContainer = document.getElementById('district-tabs');
+            tabsContainer.innerHTML = `
+                <button onclick="filterByTab('all')" id="tab-all" class="filter-tab px-4 py-2 text-xs font-medium uppercase tracking-wider rounded-full border transition-all bg-navy-900 text-gold-400 border-navy-900 shadow-md">
+                    ${dict.lbl_all_districts} (10)
+                </button>
+                ${districtCardsData.map(d => {
+                    const name = currentLang === 'en' ? d.en : (currentLang === 'zh-CN' ? d.zhCN : d.zhHK);
+                    return `
+                        <button onclick="filterByTab('${d.key}')" id="tab-${d.key}" class="filter-tab px-4 py-2 text-xs font-medium uppercase tracking-wider rounded-full border transition-all bg-white text-gray-600 border-gray-200 hover:border-gold-500">
+                            ${name}
+                        </button>
+                    `;
+                }).join('')}
+            `;
+        }
+
+        // RENDER PROPERTY CARDS GRID
+        function renderPropertyList(properties) {
+            const grid = document.getElementById('properties-grid');
+            const noResults = document.getElementById('no-results');
+            const dict = i18n[currentLang];
+
+            if (!properties || properties.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+
+            noResults.classList.add('hidden');
+            grid.innerHTML = properties.map(item => {
+                const isSaved = wishlist.includes(item.id);
+                const districtName = item.districtMap[currentLang] || item.district;
+                const bedsText = item.bedsMap[currentLang];
+                const featureText = item.featureMap[currentLang];
+
+                return `
+                <div class="bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-gold-500/50 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+                    
+                    <!-- Image Container -->
+                    <div class="relative h-60 overflow-hidden bg-gray-100">
+                        <img src="${item.image}" alt="${item.title}" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out">
+                        <div class="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent opacity-70"></div>
+                        
+                        <!-- District Tag -->
+                        <span class="absolute top-4 left-4 bg-navy-950/85 backdrop-blur-md text-gold-400 text-[11px] font-medium px-3 py-1 rounded-full border border-gold-500/30 tracking-wider">
+                            <i class="fa-solid fa-location-dot mr-1"></i>${districtName}
+                        </span>
+
+                        <!-- Wishlist Heart Button -->
+                        <button onclick="toggleWishlist(${item.id}, event)" 
+                                class="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/90 hover:bg-white text-navy-950 flex items-center justify-center transition-all shadow-md hover:scale-110 focus:outline-none">
+                            <i class="${isSaved ? 'fa-solid text-gold-600' : 'fa-regular text-gray-500'} fa-bookmark text-sm"></i>
+                        </button>
+
+                        <!-- Rent Price Tag -->
+                        <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                            <div>
+                                <span class="text-[10px] uppercase text-gray-300 tracking-widest block">Monthly Rent</span>
+                                <span class="font-serif-title font-bold text-xl text-white">${item.rentDisplay} <span class="text-xs font-normal text-gold-400">${dict.lbl_rent_month}</span></span>
+                            </div>
+                            <span class="text-[11px] bg-gold-500/20 backdrop-blur-sm text-gold-300 px-2 py-0.5 rounded border border-gold-500/30 font-mono">
+                                ${dict.lbl_sqft_rent} HK$ ${item.rentPerSqft.toFixed(1)}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Details Content -->
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-serif-title font-semibold text-lg text-navy-950 mb-1 group-hover:text-gold-600 transition-colors">
+                                ${item.title}
+                            </h3>
+                            <p class="text-xs text-gold-600 font-medium mb-4 flex items-center gap-1.5 truncate">
+                                <i class="fa-solid fa-sparkles text-[10px]"></i> ${featureText}
+                            </p>
+
+                            <!-- Specs Grid -->
+                            <div class="grid grid-cols-3 gap-2 py-2.5 px-3 bg-pearl rounded border border-gray-100 text-center text-xs text-gray-600 mb-4">
+                                <div>
+                                    <span class="block text-gray-400 text-[10px]">${dict.lbl_sqft}</span>
+                                    <span class="font-semibold text-navy-950">${item.sqft} sq.ft</span>
+                                </div>
+                                <div class="border-x border-gray-200">
+                                    <span class="block text-gray-400 text-[10px]">${dict.lbl_layout}</span>
+                                    <span class="font-semibold text-navy-950">${bedsText}</span>
+                                </div>
+                                <div>
+                                    <span class="block text-gray-400 text-[10px]">${dict.lbl_baths}</span>
+                                    <span class="font-semibold text-navy-950">${item.baths} Bath</span>
+                                </div>
+                            </div>
+
+                            <!-- Badges -->
+                            <div class="flex flex-wrap gap-1.5 mb-5 text-[11px]">
+                                <span class="bg-gray-100 text-gray-600 px-2 py-0.5 rounded border border-gray-200">${item.furnishingMap[currentLang]}</span>
+                                <span class="bg-navy-950/5 text-navy-900 px-2 py-0.5 rounded border border-navy-950/10">${item.petPolicyMap[currentLang]}</span>
+                            </div>
+                        </div>
+
+                        <!-- Card Buttons -->
+                        <div class="grid grid-cols-2 gap-2.5 pt-2">
+                            <button onclick="openPropertyModal(${item.id})" 
+                                    class="w-full py-2 px-3 border border-navy-950 text-navy-950 hover:bg-navy-950 hover:text-white font-medium text-xs tracking-wider rounded-sm transition-all text-center">
+                                ${dict.btn_view_details}
+                            </button>
+                            <button onclick="openBookingModal('${item.title}')" 
+                                    class="w-full py-2 px-3 bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold text-xs tracking-wider rounded-sm transition-all text-center shadow-sm">
+                                ${dict.btn_card_book}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+
+        // RENDER DISTRICT CARDS
+        function renderDistrictCards() {
+            const container = document.getElementById('district-cards-container');
+            container.innerHTML = districtCardsData.map(d => {
+                const title = currentLang === 'en' ? d.en : (currentLang === 'zh-CN' ? d.zhCN : d.zhHK);
+                const desc = currentLang === 'en' ? d.descEN : (currentLang === 'zh-CN' ? d.descCN : d.descHK);
+                return `
+                    <div class="bg-navy-900 p-6 rounded border border-gold-500/20 hover:border-gold-500/50 transition-colors">
+                        <div class="text-gold-400 text-xl font-serif font-bold mb-2">${title}</div>
+                        <p class="text-xs text-gray-300 leading-relaxed">${desc}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // RENT RANGE SLIDER DISPLAY
+        function updateRentSliderDisplay(val) {
+            document.getElementById('rent-value-display').innerText = 'HK$ ' + parseInt(val).toLocaleString();
+            applyFilters();
+        }
+
+        // FILTER LOGIC
+        function filterByTab(cat) {
+            document.querySelectorAll('.filter-tab').forEach(btn => {
+                btn.classList.remove('bg-navy-900', 'text-gold-400', 'border-navy-900', 'shadow-md');
+                btn.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
+            });
+
+            const activeBtn = document.getElementById(`tab-${cat}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
+                activeBtn.classList.add('bg-navy-900', 'text-gold-400', 'border-navy-900', 'shadow-md');
+            }
+
+            document.getElementById('hero-region').value = cat;
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const region = document.getElementById('hero-region').value;
+            const beds = document.getElementById('hero-beds').value;
+            const maxRent = parseInt(document.getElementById('hero-rent-range').value) || 25000;
+
+            let result = propertiesData;
+
+            if (region !== 'all') {
+                result = result.filter(item => item.district === region);
+            }
+            if (beds !== 'all') {
+                result = result.filter(item => item.bedsCategory === beds);
+            }
+            
+            result = result.filter(item => item.rentRaw <= maxRent);
+
+            renderPropertyList(result);
+        }
+
+        function resetFilters() {
+            document.getElementById('hero-region').value = 'all';
+            document.getElementById('hero-beds').value = 'all';
+            document.getElementById('hero-rent-range').value = 25000;
+            document.getElementById('rent-value-display').innerText = 'HK$ 25,000';
+            filterByTab('all');
+        }
+
+        function scrollToPortfolio() {
+            document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // WISHLIST LOGIC
+        function toggleWishlist(id, e) {
+            if(e) e.stopPropagation();
+
+            const dict = i18n[currentLang];
+            const index = wishlist.indexOf(id);
+            const prop = propertiesData.find(p => p.id === id);
+
+            if (index > -1) {
+                wishlist.splice(index, 1);
+                showToast(`${dict.toast_removed}${prop ? prop.title : ''}`);
+            } else {
+                wishlist.push(id);
+                showToast(`${dict.toast_added}${prop ? prop.title : ''}`);
+            }
+
+            localStorage.setItem('jardine_rental_wishlist', JSON.stringify(wishlist));
+            updateWishlistUI();
+            applyFilters();
+        }
+
+        function updateWishlistUI() {
+            const badge = document.getElementById('wishlist-badge');
+            badge.innerText = wishlist.length;
+            if (wishlist.length > 0) {
+                badge.classList.remove('scale-0');
+                badge.classList.add('scale-100');
+            } else {
+                badge.classList.remove('scale-100');
+                badge.classList.add('scale-0');
+            }
+
+            const container = document.getElementById('wishlist-items-container');
+            if (wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-gray-400">
+                        <i class="fa-regular fa-bookmark text-3xl mb-2"></i>
+                        <p class="text-xs">No saved properties in wishlist</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const savedProps = propertiesData.filter(p => wishlist.includes(p.id));
+            container.innerHTML = savedProps.map(item => `
+                <div class="flex gap-3 bg-pearl p-3 rounded border border-gray-200 relative group">
+                    <img src="${item.image}" alt="${item.title}" class="w-20 h-20 object-cover rounded shrink-0">
+                    <div class="flex-1 min-w-0">
+                        <h4 class="font-serif-title font-medium text-sm text-navy-950 truncate">${item.title}</h4>
+                        <p class="text-[11px] text-gray-500">${item.districtMap[currentLang]}</p>
+                        <p class="text-xs font-bold text-gold-600 mt-1">${item.rentDisplay} / mo</p>
+                    </div>
+                    <button onclick="toggleWishlist(${item.id})" class="text-gray-400 hover:text-red-500 self-start p-1">
+                        <i class="fa-solid fa-trash-can text-xs"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function toggleWishlistDrawer() {
+            document.getElementById('wishlist-drawer').classList.toggle('translate-x-full');
+        }
+
+        function openBookingForWishlist() {
+            toggleWishlistDrawer();
+            const savedProps = propertiesData.filter(p => wishlist.includes(p.id));
+            const titles = savedProps.map(p => p.title).join(', ');
+            openBookingModal(titles ? `Saved List: ${titles}` : 'Wishlist Properties');
+        }
+
+        // PROPERTY DETAIL MODAL
+        function openPropertyModal(id) {
+            const prop = propertiesData.find(p => p.id === id);
+            if (!prop) return;
+
+            const dict = i18n[currentLang];
+            const container = document.getElementById('modal-content-container');
+
+            container.innerHTML = `
+                <!-- Gallery Top -->
+                <div class="relative bg-black h-64 sm:h-80">
+                    <img id="modal-main-img" src="${prop.image}" alt="${prop.title}" class="w-full h-full object-cover">
+                    <div class="absolute bottom-4 left-4 right-4 flex gap-2 overflow-x-auto no-scrollbar py-1">
+                        ${prop.gallery.map((imgUrl) => `
+                            <button onclick="changeModalImage('${imgUrl}')" class="w-16 h-12 rounded overflow-hidden border-2 border-white/50 hover:border-gold-500 shrink-0 focus:outline-none">
+                                <img src="${imgUrl}" class="w-full h-full object-cover">
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <!-- Content Body -->
+                <div class="p-6 sm:p-8 space-y-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-200 pb-6">
+                        <div>
+                            <span class="text-xs font-semibold text-gold-600 uppercase tracking-widest">${prop.districtMap[currentLang]} (${prop.district})</span>
+                            <h2 class="text-2xl sm:text-3xl font-serif-title font-bold text-navy-950 mt-1">${prop.title}</h2>
+                        </div>
+                        <div class="text-left sm:text-right">
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest block">Monthly Rent</span>
+                            <span class="text-2xl font-serif-title font-bold text-gold-600">${prop.rentDisplay}</span>
+                            <span class="text-xs text-gray-500 block font-mono">HK$ ${prop.rentPerSqft.toFixed(1)} / sq.ft</span>
+                        </div>
+                    </div>
+
+                    <!-- Specs Table Grid -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-pearl p-4 rounded-lg border border-gold-500/20 text-center">
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase">${dict.lbl_sqft}</span>
+                            <p class="font-semibold text-navy-950 text-sm">${prop.sqft} sq.ft</p>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase">${dict.lbl_layout}</span>
+                            <p class="font-semibold text-navy-950 text-sm">${prop.bedsMap[currentLang]}</p>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase">${dict.lbl_baths}</span>
+                            <p class="font-semibold text-navy-950 text-sm">${prop.baths} Bath</p>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-gray-400 uppercase">Feature</span>
+                            <p class="font-semibold text-navy-950 text-xs truncate">${prop.featureMap[currentLang]}</p>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Rental Specs -->
+                    <div class="bg-navy-950/5 p-4 rounded-lg border border-navy-950/10 space-y-2 text-xs">
+                        <h4 class="font-serif-title text-sm font-semibold text-navy-950 mb-2 border-b border-navy-950/10 pb-1">
+                            <i class="fa-solid fa-clipboard-list text-gold-600 mr-1.5"></i>Lease Specifications
+                        </h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-6 text-gray-700">
+                            <div><strong class="text-navy-950">Layout:</strong> ${prop.layoutMap[currentLang]}</div>
+                            <div><strong class="text-navy-950">Inclusions:</strong> ${prop.incFeesMap[currentLang]}</div>
+                            <div><strong class="text-navy-950">Lease Term:</strong> ${prop.leaseTermMap[currentLang]}</div>
+                            <div><strong class="text-navy-950">Parking:</strong> ${prop.parkingMap[currentLang]}</div>
+                            <div><strong class="text-navy-950">Furnishing:</strong> ${prop.furnishingMap[currentLang]}</div>
+                            <div><strong class="text-navy-950">Pet Policy:</strong> ${prop.petPolicyMap[currentLang]}</div>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <h4 class="font-serif-title text-base font-semibold text-navy-950 mb-2">Overview</h4>
+                        <p class="text-sm text-gray-600 leading-relaxed font-light">${prop.descMap[currentLang]}</p>
+                    </div>
+
+                    <!-- Amenities -->
+                    <div>
+                        <h4 class="font-serif-title text-base font-semibold text-navy-950 mb-3">Amenities</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            ${prop.amenitiesMap[currentLang].map(a => `
+                                <div class="flex items-center gap-2 text-xs text-gray-700 bg-gray-50 p-2.5 rounded border border-gray-100">
+                                    <i class="fa-solid fa-circle-check text-gold-500"></i>
+                                    <span>${a}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="pt-4 border-t border-gray-200 flex flex-col sm:flex-row gap-3 justify-between items-center">
+                        <button onclick="openEstimatorWithRent(${prop.rentRaw})" class="text-xs text-gold-600 hover:underline font-medium">
+                            <i class="fa-solid fa-calculator mr-1"></i>Apply rent to Move-in Estimator
+                        </button>
+                        <div class="flex gap-3 w-full sm:w-auto">
+                            <button onclick="closePropertyModal(); openBookingModal('${prop.title}')" class="flex-1 sm:flex-none px-8 py-3 bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold text-xs tracking-widest uppercase rounded-sm">
+                                ${dict.btn_card_book}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('property-modal').classList.remove('hidden');
+        }
+
+        function changeModalImage(src) {
+            document.getElementById('modal-main-img').src = src;
+        }
+
+        function closePropertyModal() {
+            document.getElementById('property-modal').classList.add('hidden');
+        }
+
+        // BOOKING MODAL
+        function openBookingModal(propertyTitle = 'General Inquiry') {
+            document.getElementById('booking-property-title').value = propertyTitle;
+            document.getElementById('booking-property-display').value = propertyTitle;
+            document.getElementById('booking-modal').classList.remove('hidden');
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        function handleBookingSubmit(e) {
+            e.preventDefault();
+            closeBookingModal();
+            showToast(i18n[currentLang].toast_booked);
+        }
+
+        // RENTAL EXPENSE CALCULATOR
+        function calculateRentalExpense() {
+            const rent = parseFloat(document.getElementById('calc-rent').value) || 0;
+            const depositMonths = parseFloat(document.getElementById('calc-deposit-months').value) || 2;
+            const agencyMonths = parseFloat(document.getElementById('calc-agency-fee').value) || 0.5;
+
+            const deposit = rent * depositMonths;
+            const firstRent = rent;
+            const agencyFee = rent * agencyMonths;
+
+            const annualRent = rent * 12;
+            const stampDutyTenant = (annualRent * 0.0025) / 2 + 5;
+
+            const totalMoveIn = deposit + firstRent + agencyFee + stampDutyTenant;
+
+            document.getElementById('res-deposit').innerText = 'HK$ ' + Math.round(deposit).toLocaleString();
+            document.getElementById('res-first-rent').innerText = 'HK$ ' + Math.round(firstRent).toLocaleString();
+            document.getElementById('res-agency').innerText = 'HK$ ' + Math.round(agencyFee).toLocaleString();
+            document.getElementById('res-stamp').innerText = 'HK$ ' + Math.round(stampDutyTenant).toLocaleString();
+            document.getElementById('res-total-movein').innerText = 'HK$ ' + Math.round(totalMoveIn).toLocaleString();
+        }
+
+        function openEstimatorWithRent(rentRaw) {
+            closePropertyModal();
+            document.getElementById('calc-rent').value = rentRaw;
+            calculateRentalExpense();
+            document.getElementById('estimator').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // TOAST UTILITY
+        function showToast(msg) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'bg-navy-950 text-white border border-gold-500/50 px-4 py-3 rounded shadow-xl text-xs flex items-center gap-3 transition-all duration-300 pointer-events-auto transform translate-y-2 opacity-0';
+            toast.innerHTML = `
+                <i class="fa-solid fa-circle-check text-gold-400 text-base"></i>
+                <span>${msg}</span>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        // MOBILE MENU TOGGLE
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.className = 'fa-solid fa-bars text-xl';
+            } else {
+                icon.className = 'fa-solid fa-xmark text-xl';
+            }
+        }
+    </script>
+</body>
+</html>
