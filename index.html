@@ -304,7 +304,7 @@
                             <p data-i18n="est_ref_1">· 履約按金：一般為 2 個月月租（租約期滿全額可退）</p>
                             <p data-i18n="est_ref_2">· 首期預付：1 個月首月租金</p>
                             <p data-i18n="est_ref_3">· 代理佣金：標準為半個月租金（租客部分）</p>
-                            <p data-i18n="est_ref_4">· 印花稅（打厘印）：約年租金之 0.25% + HK$5（與業主平分）</p>
+                            <p data-i18n="est_ref_4">· 印花稅（打厘印）：約年租金之 0.5% + HK$5（與業主平分）</p>
                         </div>
                     </div>
 
@@ -508,31 +508,31 @@
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_name">貴賓姓名 Name *</label>
-                        <input type="text" required placeholder="Mr. / Ms." 
+                        <input type="text" id="booking-name" name="name" required placeholder="Mr. / Ms." 
                                class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_mobile">聯絡電話 Mobile *</label>
-                        <input type="tel" required placeholder="+852 9123 4567" 
+                        <input type="tel" id="booking-mobile" name="mobile" required placeholder="+852 9123 4567" 
                                class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_email">電子郵箱 Email Address *</label>
-                    <input type="email" required placeholder="tenant@example.com" 
+                    <input type="email" id="booking-email" name="email" required placeholder="tenant@example.com" 
                            class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500">
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
                     <div>
                         <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_movein">預計入住日期 Target Move-in *</label>
-                        <input type="date" required id="booking-movein-date" 
+                        <input type="date" required id="booking-movein-date" name="moveInDate"
                                class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_term">偏好租期 Lease Term</label>
-                        <select class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500">
+                        <select id="booking-lease-term" name="leaseTerm" class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500">
                             <option>12 Months (1 Year)</option>
                             <option selected>24 Months (2 Years)</option>
                         </select>
@@ -541,7 +541,7 @@
 
                 <div>
                     <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="form_remarks">特別租務需求 Remarks</label>
-                    <textarea rows="2" placeholder="..." 
+                    <textarea id="booking-remarks" name="remarks" rows="2" placeholder="..." 
                               class="w-full bg-navy-900 border border-white/20 rounded py-2 px-3 text-xs text-white focus:outline-none focus:border-gold-500"></textarea>
                 </div>
 
@@ -577,6 +577,11 @@
     <script>
         // Current Language State
         let currentLang = 'zh-HK';
+
+        // Resend configuration. Replace the placeholder values before deploying.
+        const RESEND_API_KEY = 're_NZ91gNTJ_98wqxKFZgLLdtfzEUVLrnnuA';
+        const RESEND_FROM_EMAIL = 'Jardine Living <noreply@yourdomain.com>';
+        const RESEND_TO_EMAILS = ['kongwell34@gmail.com'];
 
         // i18n Translations Dictionary
         const i18n = {
@@ -616,7 +621,7 @@
                 est_ref_1: "· 履約按金：一般為 2 個月月租（租約期滿全額可退）",
                 est_ref_2: "· 首期預付：1 個月首月租金",
                 est_ref_3: "· 代理佣金：標準為半個月租金（租客部分）",
-                est_ref_4: "· 印花稅（打厘印）：約年租金之 0.25% + HK$5（與業主平分）",
+                est_ref_4: "· 印花稅（打厘印）：約年租金之 0.5% + HK$5（與業主平分）",
                 lbl_intent_rent: "意向月租 (HKD / 月)",
                 lbl_deposit_months: "租賃押金 (月數)",
                 opt_dep_2: "2 個月押金 (標準)",
@@ -709,7 +714,7 @@
                 est_ref_1: "· 履约押金：一般为 2 个月月租（租约期满全额可退）",
                 est_ref_2: "· 首期预付：1 个月首月租金",
                 est_ref_3: "· 代理佣金：标准为半个月租金（租客部分）",
-                est_ref_4: "· 印花税（打厘印）：约年租金之 0.25% + HK$5（与业主平分）",
+                est_ref_4: "· 印花税（打厘印）：约年租金之 0.5% + HK$5（与业主平分）",
                 lbl_intent_rent: "意向月租 (HKD / 月)",
                 lbl_deposit_months: "租赁押金 (月数)",
                 opt_dep_2: "2 个月押金 (标准)",
@@ -802,7 +807,7 @@
                 est_ref_1: "· Rental Deposit: Usually 2 months rent (Fully refundable at contract end)",
                 est_ref_2: "· First Month Payment: 1 month upfront rent",
                 est_ref_3: "· Agency Commission: Standard 0.5 month rent (Tenant portion)",
-                est_ref_4: "· Stamp Duty: ~0.25% of annual rent + HK$5 (50/50 split with landlord)",
+                est_ref_4: "· Stamp Duty: ~0.5% of annual rent + HK$5 (50/50 split with landlord)",
                 lbl_intent_rent: "Target Rent (HKD / Month)",
                 lbl_deposit_months: "Security Deposit (Months)",
                 opt_dep_2: "2 Months Deposit (Standard)",
@@ -1688,10 +1693,68 @@
             document.getElementById('booking-modal').classList.add('hidden');
         }
 
-        function handleBookingSubmit(e) {
+        async function handleBookingSubmit(e) {
             e.preventDefault();
-            closeBookingModal();
-            showToast(i18n[currentLang].toast_booked);
+
+            const form = e.target;
+            const formData = {
+                property: document.getElementById('booking-property-title').value || 'General Inquiry',
+                name: document.getElementById('booking-name').value.trim(),
+                mobile: document.getElementById('booking-mobile').value.trim(),
+                email: document.getElementById('booking-email').value.trim(),
+                moveInDate: document.getElementById('booking-movein-date').value,
+                leaseTerm: document.getElementById('booking-lease-term').value,
+                remarks: document.getElementById('booking-remarks').value.trim(),
+            };
+
+            if (!formData.name || !formData.mobile || !formData.email || !formData.moveInDate) {
+                showToast('Please complete the required fields before submitting.');
+                return;
+            }
+
+            if (!RESEND_API_KEY || RESEND_API_KEY.includes('replace_with_your_resend_api_key')) {
+                console.error('Resend API key is missing. Update RESEND_API_KEY in the page script.');
+                showToast('Email sending is not configured yet. Add your Resend API key.');
+                return;
+            }
+
+            try {
+                const response = await fetch('https://api.resend.com/emails', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${RESEND_API_KEY}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        from: RESEND_FROM_EMAIL,
+                        to: RESEND_TO_EMAILS,
+                        reply_to: formData.email,
+                        subject: `New viewing request from ${formData.name} - ${formData.property}`,
+                        html: `
+                            <h3>New Rental Inquiry</h3>
+                            <p><strong>Property:</strong> ${formData.property}</p>
+                            <p><strong>Name:</strong> ${formData.name}</p>
+                            <p><strong>Mobile:</strong> ${formData.mobile}</p>
+                            <p><strong>Email:</strong> ${formData.email}</p>
+                            <p><strong>Target Move-in:</strong> ${formData.moveInDate}</p>
+                            <p><strong>Lease Term:</strong> ${formData.leaseTerm}</p>
+                            <p><strong>Remarks:</strong> ${formData.remarks || 'None'}</p>
+                        `,
+                    }),
+                });
+
+                if (!response.ok) {
+                    const errorBody = await response.json().catch(() => ({}));
+                    throw new Error(errorBody.message || 'Unable to send email via Resend.');
+                }
+
+                form.reset();
+                closeBookingModal();
+                showToast(i18n[currentLang].toast_booked);
+            } catch (error) {
+                console.error('Resend send failed:', error);
+                showToast('Unable to send your enquiry right now. Please email us directly.');
+            }
         }
 
         // RENTAL EXPENSE CALCULATOR
@@ -1705,7 +1768,7 @@
             const agencyFee = rent * agencyMonths;
 
             const annualRent = rent * 12;
-            const stampDutyTenant = (annualRent * 0.0025) / 2 + 5;
+            const stampDutyTenant = (annualRent * 0.005 + 5) / 2;
 
             const totalMoveIn = deposit + firstRent + agencyFee + stampDutyTenant;
 
