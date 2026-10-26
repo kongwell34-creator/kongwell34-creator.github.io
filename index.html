@@ -580,7 +580,7 @@
 
         // Resend configuration. Replace the placeholder values before deploying.
         const RESEND_API_KEY = 're_NZ91gNTJ_98wqxKFZgLLdtfzEUVLrnnuA';
-        const RESEND_FROM_EMAIL = 'kongwell34@gmail.com';
+        const RESEND_FROM_EMAIL = 'Jardine Living <onboarding@resend.dev>';
         const RESEND_TO_EMAILS = ['kongwell34@gmail.com'];
 
         // i18n Translations Dictionary
@@ -1696,6 +1696,11 @@
         async function handleBookingSubmit(e) {
             e.preventDefault();
 
+            if (window.location.protocol === 'file:') {
+                showToast('Please run this site via a local web server to send the form.');
+                return;
+            }
+
             const form = e.target;
             const formData = {
                 property: document.getElementById('booking-property-title').value || 'General Inquiry',
@@ -1712,7 +1717,8 @@
                 return;
             }
 
-            if (!RESEND_API_KEY || RESEND_API_KEY.includes('re_NZ91gNTJ_98wqxKFZgLLdtfzEUVLrnnuA')) {
+            const hasPlaceholderKey = /replace_with_your_resend_api_key|yourdomain|example/i.test(RESEND_API_KEY);
+            if (!RESEND_API_KEY || hasPlaceholderKey) {
                 console.error('Resend API key is missing. Update RESEND_API_KEY in the page script.');
                 showToast('Email sending is not configured yet. Add your Resend API key.');
                 return;
