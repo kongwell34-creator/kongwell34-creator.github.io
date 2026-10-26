@@ -579,10 +579,14 @@
         // Current Language State
         let currentLang = 'zh-HK';
 
-        // EmailJS configuration. Add your actual EmailJS service IDs before deploying.
+        // EmailJS configuration. These values are already populated for the site.
         const EMAILJS_SERVICE_ID = 'service_d9kgtu6';
         const EMAILJS_TEMPLATE_ID = 'template_4b9ufrw';
         const EMAILJS_PUBLIC_KEY = 'vcws1TGHhccuHnO6D';
+
+        if (window.emailjs) {
+            window.emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+        }
 
         // i18n Translations Dictionary
         const i18n = {
@@ -1713,7 +1717,7 @@
                 return;
             }
 
-            const hasPlaceholderKey = /service_d9kgtu6|template_4b9ufrw|vcws1TGHhccuHnO6D|example/i.test(EMAILJS_PUBLIC_KEY + EMAILJS_SERVICE_ID + EMAILJS_TEMPLATE_ID);
+            const hasPlaceholderKey = /xxxxx|your_public_key_here|replace_with_your|example/i.test(EMAILJS_PUBLIC_KEY + EMAILJS_SERVICE_ID + EMAILJS_TEMPLATE_ID);
             if (!EMAILJS_PUBLIC_KEY || !EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || hasPlaceholderKey) {
                 console.error('EmailJS credentials are missing. Update the EmailJS configuration in the page script.');
                 showToast('Email sending is not configured yet. Add your EmailJS keys.');
@@ -1725,8 +1729,6 @@
                 if (!emailjsReady) {
                     throw new Error('EmailJS script is not loaded.');
                 }
-
-                emailjsReady.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
                 const response = await emailjsReady.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
                     property: formData.property,
