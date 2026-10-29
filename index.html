@@ -1757,7 +1757,7 @@
         function calculateRentalExpense() {
             const rent = parseFloat(document.getElementById('calc-rent').value) || 0;
             const depositMonths = parseFloat(document.getElementById('calc-deposit-months').value) || 2;
-            const agencyMonths = parseFloat(document.getElementById('calc-agency-fee').value) || 0.5;
+            const agencyMonths = parseFloat(document.getElementById('calc-agency-fee').value) || 0;
 
             const deposit = rent * depositMonths;
             const firstRent = rent;
