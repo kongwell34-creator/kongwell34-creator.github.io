@@ -321,6 +321,37 @@
                                 </div>
                             </div>
 
+                            <!-- Lease Duration -->
+                            <div>
+                                <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="lbl_lease_duration">租期 (月數)</label>
+                                <select id="calc-lease-duration" onchange="calculateRentalExpense()" class="w-full bg-navy-900/90 border border-white/20 rounded py-2 px-3 text-white text-sm focus:outline-none focus:border-gold-500 cursor-pointer">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12" selected>12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                </select>
+                            </div>
+
                             <!-- Deposit Months -->
                             <div>
                                 <label class="block text-xs font-medium text-gold-400 mb-1" data-i18n="lbl_deposit_months">租賃押金 (月數)</label>
@@ -350,6 +381,18 @@
 
                         <!-- Calculation Output Table -->
                         <div class="pt-6 border-t border-white/10 space-y-2.5 text-xs">
+                            <div class="flex justify-between text-gray-300">
+                                <span data-i18n="res_term_total_lbl">所選租期總租金 (Total Rent):</span>
+                                <span id="res-term-total-rent" class="font-mono text-white font-medium">HK$ 234,000</span>
+                            </div>
+                            <div class="flex justify-between text-gray-300">
+                                <span data-i18n="res_monthly_rent_lbl">每月租金 (Monthly Rent):</span>
+                                <span id="res-monthly-rent" class="font-mono text-white font-medium">HK$ 19,500</span>
+                            </div>
+                            <div class="flex justify-between text-gray-300">
+                                <span data-i18n="res_discount_lbl">租期折扣 (Lease Discount):</span>
+                                <span id="res-discount" class="font-mono text-white font-medium">0%</span>
+                            </div>
                             <div class="flex justify-between text-gray-300">
                                 <span data-i18n="res_dep_lbl">履約押金 (Rental Deposit):</span>
                                 <span id="res-deposit" class="font-mono text-white font-medium">HK$ 39,000</span>
@@ -623,6 +666,7 @@
                 est_ref_2: "· 首期預付：1 個月首月租金",
                 est_ref_3: "· 代理佣金：標準為半個月租金（租客部分）",
                 lbl_intent_rent: "意向月租 (HKD / 月)",
+                lbl_lease_duration: "租期 (月數)",
                 lbl_deposit_months: "租賃押金 (月數)",
                 opt_dep_2: "2 個月押金 (標準)",
                 opt_dep_1: "1 個月押金 (短租/特別條款)",
@@ -632,6 +676,9 @@
                 lbl_agency_fee: "地產代理佣金",
                 opt_ag_half: "半個月租金 (0.5 Month)",
                 opt_ag_zero: "免佣金優惠專案 (0 Month)",
+                res_term_total_lbl: "所選租期總租金 (Total Rent):",
+                res_monthly_rent_lbl: "每月租金 (Monthly Rent):",
+                res_discount_lbl: "租期折扣 (Lease Discount):",
                 res_dep_lbl: "履約押金 (Rental Deposit):",
                 res_1st_lbl: "預付首月租金 (1st Month Rent):",
                 res_ag_lbl: "預估地產代理佣金 (Agency Fee):",
@@ -715,6 +762,7 @@
                 est_ref_2: "· 首期预付：1 个月首月租金",
                 est_ref_3: "· 代理佣金：标准为半个月租金（租客部分）",
                 lbl_intent_rent: "意向月租 (HKD / 月)",
+                lbl_lease_duration: "租期 (月数)",
                 lbl_deposit_months: "租赁押金 (月数)",
                 opt_dep_2: "2 个月押金 (标准)",
                 opt_dep_1: "1 个月押金 (短租/特别条款)",
@@ -724,6 +772,9 @@
                 lbl_agency_fee: "地产代理佣金",
                 opt_ag_half: "半个月租金 (0.5 Month)",
                 opt_ag_zero: "免佣金优惠专案 (0 Month)",
+                res_term_total_lbl: "所选租期总租金 (Total Rent):",
+                res_monthly_rent_lbl: "每月租金 (Monthly Rent):",
+                res_discount_lbl: "租期折扣 (Lease Discount):",
                 res_dep_lbl: "履约押金 (Rental Deposit):",
                 res_1st_lbl: "预付首月租金 (1st Month Rent):",
                 res_ag_lbl: "预估地产代理佣金 (Agency Fee):",
@@ -807,6 +858,7 @@
                 est_ref_2: "· First Month Payment: 1 month upfront rent",
                 est_ref_3: "· Agency Commission: Standard 0.5 month rent (Tenant portion)",
                 lbl_intent_rent: "Target Rent (HKD / Month)",
+                lbl_lease_duration: "Lease Duration (Months)",
                 lbl_deposit_months: "Security Deposit (Months)",
                 opt_dep_2: "2 Months Deposit (Standard)",
                 opt_dep_1: "1 Month Deposit (Short-term/Special)",
@@ -816,6 +868,9 @@
                 lbl_agency_fee: "Agency Fee",
                 opt_ag_half: "0.5 Month Rent (Standard)",
                 opt_ag_zero: "0 Month (Special Promotion)",
+                res_term_total_lbl: "Total Rent for Selected Term:",
+                res_monthly_rent_lbl: "Monthly Rent:",
+                res_discount_lbl: "Lease Discount:",
                 res_dep_lbl: "Security Deposit (Rental Deposit):",
                 res_1st_lbl: "1st Month Upfront Rent:",
                 res_ag_lbl: "Estimated Agency Fee:",
@@ -1749,17 +1804,22 @@
         // RENTAL EXPENSE CALCULATOR
         function calculateRentalExpense() {
             const rent = parseFloat(document.getElementById('calc-rent').value) || 0;
+            const leaseDuration = parseInt(document.getElementById('calc-lease-duration').value, 10) || 0;
             const depositMonths = parseFloat(document.getElementById('calc-deposit-months').value) || 0;
             const agencyMonths = parseFloat(document.getElementById('calc-agency-fee').value) || 0;
 
-            const deposit = rent * depositMonths;
-            const firstRent = rent;
-            const agencyFee = rent * agencyMonths;
-
-            const annualRent = rent * 12;
-            
+            const discountRate = leaseDuration > 11 ? 0.3 : leaseDuration > 5 ? 0.1 : 0;
+            const discountedMonthlyRent = rent * (1 - discountRate);
+            const deposit = discountedMonthlyRent * depositMonths;
+            const firstRent = discountedMonthlyRent;
+            const agencyFee = discountedMonthlyRent * agencyMonths;
+            const totalTermRent = discountedMonthlyRent * leaseDuration;
+            const totalSavings = rent * leaseDuration - totalTermRent;
             const totalMoveIn = deposit + firstRent + agencyFee;
 
+            document.getElementById('res-term-total-rent').innerText = 'HK$ ' + Math.round(totalTermRent).toLocaleString();
+            document.getElementById('res-monthly-rent').innerText = 'HK$ ' + Math.round(discountedMonthlyRent).toLocaleString();
+            document.getElementById('res-discount').innerText = Math.round(discountRate * 100) + '% (Save HK$ ' + Math.round(totalSavings).toLocaleString() + ')';
             document.getElementById('res-deposit').innerText = 'HK$ ' + Math.round(deposit).toLocaleString();
             document.getElementById('res-first-rent').innerText = 'HK$ ' + Math.round(firstRent).toLocaleString();
             document.getElementById('res-agency').innerText = 'HK$ ' + Math.round(agencyFee).toLocaleString();
